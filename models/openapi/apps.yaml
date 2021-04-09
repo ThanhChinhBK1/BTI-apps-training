@@ -1,0 +1,54 @@
+openapi: 3.0.3
+info:
+  title: apps-training RESTful API
+  version: 0.0.1
+  description: OpenAPI definition file for impulse-apps
+  contact:
+    name: Impulse
+servers:
+  - url: /impulse-apps-training
+tags:
+  - name: root
+  - name: auth-n
+    description: API on how to use auth
+  - name: datasets
+    description: API relating to datasets
+  - name: projects
+    description: API relating to projects
+  - name: model-workspaces
+    description: API relating to model-workspaces
+  - name: workspace-comments
+    description: API relating to comments on a model workspace
+  - name: tags
+    description: API relating to tags
+  - name: inference-results
+    description: API relating to inference-results
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      x-bearerInfoFunc: implemented.controllers.security_controller_.info_from_BearerAuth
+paths:
+  /:
+    get:
+      operationId: ping
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "./definitions/common.yaml#/components/schemas/BasicResponse"
+              examples:
+                res:
+                  value:
+                    appStatusCode: 200
+                    description: Success
+      description: Test server health
+      tags:
+        - root
+      security: []
+security:
+  - BearerAuth: []

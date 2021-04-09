@@ -1,0 +1,68 @@
+components:
+  schemas:
+    BasicResponse:
+      type: object
+      description: Basic response with application status code
+      properties:
+        appStatusCode:
+          type: integer
+        description:
+          type: string
+      required:
+        - appStatusCode
+        - description
+    Paginator:
+      type: object
+      description: Paginator provides navigation for paged information, typically used with a table.
+      properties:
+        length:
+          description: The length of the total number of items that are being paginated.
+          type: number
+        pageIndex:
+          description: The zero-based page index of the displayed list of items.
+          type: number
+        pageSize:
+          description: Number of items to display on a page.
+          type: number
+      required:
+        - length
+        - pageIndex
+        - pageSize
+    CreationStatus:
+      type: object
+      description: Information on who created a resource and when
+      properties:
+        creationUser:
+          type: string
+        creationDate:
+          type: integer
+    UpdateStatus:
+      type: object
+      description: meta data for when and who create or update
+      properties:
+        creationUser:
+          type: string
+        creationDate:
+          type: integer
+        lastUpdateUser:
+          type: string
+        lastUpdateDate:
+          type: integer
+    Rectangular:
+      type: object
+      properties:
+        x:
+          type: integer
+        y:
+          type: integer
+        width:
+          type: integer
+        height:
+          type: integer
+    TimeRange:
+      type: object
+      properties:
+        timeFrom:
+          type: integer
+        timeTo:
+          type: integer
