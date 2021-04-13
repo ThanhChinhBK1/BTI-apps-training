@@ -1,1 +1,2 @@
 # BTI-apps-training
+こんにちは
