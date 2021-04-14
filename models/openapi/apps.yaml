@@ -65,3 +65,18 @@ paths:
         default:
           description: Unexpected error
       x-openapi-router-controller: implemented.controllers.employee_controller
+    delete:
+      operationId: delete_employee
+      tags:
+        - employee
+      description: Get a list of action recommendation by targetType and targetId
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+        default:
+          description: Unexpected error
+      x-openapi-router-controller: implemented.controllers.employee_controller

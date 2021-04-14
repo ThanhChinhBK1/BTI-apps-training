@@ -33,3 +33,15 @@ def get_employee(employee_id):  # noqa: E501
         name=res[0].name,
         description=res[0].description
     )
+
+
+def delete_employee(employ_id):  # noqa: E501
+
+    cluster = Cluster()
+    session = cluster.connect('test')
+
+    query = "DELETE FROM employee WHERE employ_id=?"
+    prepared = session.prepare(query)
+    bound_stsm = prepared.bind((employ_id,))
+    session.execute(bound_stsm)
+    return employ_id
