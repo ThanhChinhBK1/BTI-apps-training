@@ -33,3 +33,24 @@ def get_employee(employee_id):  # noqa: E501
         name=res[0].name,
         description=res[0].description
     )
+
+
+def get_employees():  # noqa: E501
+    """get_employees
+
+    get all employees # noqa: E501
+
+
+    :rtype: List[Employee]
+    """
+    cluster = Cluster()
+    session = cluster.connect('test')
+    query = "SELECT * FROM employee"
+    rows = session.execute(query)
+    return [
+        Employee(
+            employee_id=row.employ_id,
+            name=row.name,
+            description=row.description
+        ) for row in rows.all()
+    ]

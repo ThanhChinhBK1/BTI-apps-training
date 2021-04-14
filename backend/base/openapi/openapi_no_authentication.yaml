@@ -32,6 +32,22 @@ paths:
       tags:
       - root
       x-openapi-router-controller: base.controllers.root_controller
+  /employees:
+    get:
+      description: get all employees
+      operationId: get_employees
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employees'
+          description: OK
+        default:
+          description: Unexpected Error
+      tags:
+      - employee
+      x-openapi-router-controller: implemented.controllers.employee_controller
   /employees/{employeeId}:
     get:
       description: Get a list of action recommendation by targetType and targetId
@@ -72,6 +88,11 @@ components:
         description:
           type: string
       type: object
+    Employees:
+      description: list of employee
+      items:
+        $ref: '#/components/schemas/Employee'
+      type: array
     BasicResponse:
       description: Basic response with application status code
       example:
