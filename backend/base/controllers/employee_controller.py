@@ -16,3 +16,14 @@ def get_employee(employee_id):  # noqa: E501
     :rtype: Employee
     """
     return 'do some magic!'
+
+
+def get_employees():  # noqa: E501
+    """get_employees
+
+    get all employees # noqa: E501
+
+
+    :rtype: List[Employee]
+    """
+    return 'do some magic!'
