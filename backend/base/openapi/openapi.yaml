@@ -7,24 +7,10 @@ info:
   version: 0.0.1
 servers:
 - url: /impulse-apps-training
-security:
-- BearerAuth: []
 tags:
 - name: root
-- description: API on how to use auth
-  name: auth-n
-- description: API relating to datasets
-  name: datasets
-- description: API relating to projects
-  name: projects
-- description: API relating to model-workspaces
-  name: model-workspaces
-- description: API relating to comments on a model workspace
-  name: workspace-comments
-- description: API relating to tags
-  name: tags
-- description: API relating to inference-results
-  name: inference-results
+- description: API on employee
+  name: employee
 paths:
   /:
     get:
@@ -46,8 +32,46 @@ paths:
       tags:
       - root
       x-openapi-router-controller: base.controllers.root_controller
+  /employees/{employeeId}:
+    get:
+      description: Get a list of action recommendation by targetType and targetId
+      operationId: get_employee
+      parameters:
+      - explode: false
+        in: path
+        name: employeeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+          description: OK
+        default:
+          description: Unexpected error
+      tags:
+      - employee
+      x-openapi-router-controller: implemented.controllers.employee_controller
 components:
   schemas:
+    Employee:
+      description: Basic response with application status code
+      example:
+        name: name
+        description: description
+        employeeId: employeeId
+      properties:
+        employeeId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+      type: object
     BasicResponse:
       description: Basic response with application status code
       example:
@@ -62,9 +86,3 @@ components:
       - appStatusCode
       - description
       type: object
-  securitySchemes:
-    BearerAuth:
-      bearerFormat: JWT
-      scheme: bearer
-      type: http
-      x-bearerInfoFunc: implemented.controllers.security_controller_.info_from_BearerAuth

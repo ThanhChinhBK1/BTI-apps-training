@@ -4,3 +4,4 @@
 from __future__ import absolute_import
 # import models into model package
 from base.models.basic_response import BasicResponse
+from base.models.employee import Employee
