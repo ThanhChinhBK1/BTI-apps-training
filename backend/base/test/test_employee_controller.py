@@ -13,6 +13,21 @@ from base.test import BaseTestCase
 class TestEmployeeController(BaseTestCase):
     """EmployeeController integration test stubs"""
 
+    def test_delete_employee(self):
+        """Test case for delete_employee
+
+        
+        """
+        headers = { 
+            'Accept': 'application/json',
+        }
+        response = self.client.open(
+            '/impulse-apps-training/employees/{employee_id}'.format(employee_id='employee_id_example'),
+            method='DELETE',
+            headers=headers)
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
     def test_get_employee(self):
         """Test case for get_employee
 
