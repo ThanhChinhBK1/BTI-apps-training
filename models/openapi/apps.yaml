@@ -9,27 +9,20 @@ servers:
   - url: /impulse-apps-training
 tags:
   - name: root
-  - name: auth-n
-    description: API on how to use auth
-  - name: datasets
-    description: API relating to datasets
-  - name: projects
-    description: API relating to projects
-  - name: model-workspaces
-    description: API relating to model-workspaces
-  - name: workspace-comments
-    description: API relating to comments on a model workspace
-  - name: tags
-    description: API relating to tags
-  - name: inference-results
-    description: API relating to inference-results
+  - name: employee
+    description: API on employee
 components:
-  securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      x-bearerInfoFunc: implemented.controllers.security_controller_.info_from_BearerAuth
+  schemas:
+    Employee:
+      type: object
+      description: Basic response with application status code
+      properties:
+        employeeId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
 paths:
   /:
     get:
@@ -50,5 +43,25 @@ paths:
       tags:
         - root
       security: []
-security:
-  - BearerAuth: []
+  /employees/{employeeId}:
+    parameters:
+      - name: employeeId
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: get_employee
+      tags:
+        - employee
+      description: Get a list of action recommendation by targetType and targetId
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+        default:
+          description: Unexpected error
+      x-openapi-router-controller: implemented.controllers.employee_controller
