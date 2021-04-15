@@ -21,6 +21,12 @@ components:
           type: string
         description:
           type: string
+    EmployeePutRequestBody:
+      type: object
+      description: Put request body to update an employee
+      properties:
+        description:
+          type: string
     Employee:
       type: object
       description: Basic response with application status code
@@ -99,20 +105,43 @@ paths:
         required: true
         schema:
           type: string
-    delete:
-      operationId: delete_employee
+
+    put:
+      operationId: put_employee
       tags:
         - employee
-      description: Delete a list of action recommendation by targetType and targetId
+      description: update description for an employee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeePutRequestBody'
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Employee"
+                $ref: '#/components/schemas/Employee'
         default:
-          description: Unexpected error
+          description: Unexpected Error
+        x-openapi-router-controller: implemented.controllers.employee_controller
+
+    delete:
+      operationId: delete_employee
+      tags:
+        - employee
+      description: Delete a list of action recommendation by targetType and targetId
+
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        default:
+          description: Unexpected Error
       x-openapi-router-controller: implemented.controllers.employee_controller
 
     get:
