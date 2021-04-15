@@ -21,6 +21,12 @@ components:
           type: string
         description:
           type: string
+    EmployeePutRequestBody:
+      type: object
+      description: Post request body to create a new employee
+      properties:
+        description:
+          type: string
     Employee:
       type: object
       description: Basic response with application status code
@@ -104,6 +110,26 @@ paths:
       tags:
         - employee
       description: Get a list of action recommendation by targetType and targetId
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+        default:
+          description: Unexpected error
+      x-openapi-router-controller: implemented.controllers.employee_controller
+    put:
+      operationId: put_employee
+      tags:
+        - employee
+      description: update request
+      requestBody:
+        content:
+          applicattion/json:
+            schema:
+              $ref: "#/components/schemas/EmployeePutRequestBody"
       responses:
         "200":
           description: OK

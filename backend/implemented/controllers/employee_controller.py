@@ -1,6 +1,6 @@
 from typing import List
 from base.models import EmployeePostRequestBody
-
+from base.models import EmployeePutRequestBody
 import uuid
 
 import connexion
@@ -59,7 +59,6 @@ def get_employees():  # noqa: E501
     ]
 
 
-
 def delete_employee(employee_id):  # noqa: E501
     """delete_employee
 
@@ -78,6 +77,8 @@ def delete_employee(employee_id):  # noqa: E501
     bound_stsm = prepared.bind((employee_id,))
     session.execute(bound_stsm)
     return employee_id
+
+
 def post_employees(employee_post_request_body=None):  # noqa: E501
     """post_employees
 
@@ -100,4 +101,29 @@ def post_employees(employee_post_request_body=None):  # noqa: E501
     bound_stsm = prepared.bind((id, employee_post_request_body.name, employee_post_request_body.description,))
     session.execute(bound_stsm)
     return id
+
+
+def put_employee(employee_id, employee_put_request_body=None):  # noqa: E501
+    """put_employee
+
+    update request # noqa: E501
+
+    :param employee_id:
+    :type employee_id: str
+    :param employee_put_request_body:
+    :type employee_put_request_body: dict | bytes
+
+    :rtype: Employee
+    """
+    if connexion.request.is_json:
+        employee_put_request_body = EmployeePutRequestBody.from_dict(connexion.request.get_json())  # noqa: E501
+    """create employees data."""
+    cluster = Cluster()
+    session = cluster.connect('test')
+    query = "UPDATE employee SET description = ? WHERE employ_id = ? ;"
+
+    prepared = session.prepare(query)
+    bound_stsm = prepared.bind((employee_put_request_body.description, employee_id,))
+    session.execute(bound_stsm)
+    return employee_id
 
