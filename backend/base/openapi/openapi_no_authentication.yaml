@@ -128,7 +128,7 @@ paths:
         style: simple
       requestBody:
         content:
-          applicattion/json:
+          application/json:
             schema:
               $ref: '#/components/schemas/EmployeePutRequestBody'
       responses:
@@ -158,6 +158,8 @@ components:
       type: object
     EmployeePutRequestBody:
       description: Post request body to create a new employee
+      example:
+        description: description
       properties:
         description:
           type: string
