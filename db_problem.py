@@ -37,7 +37,7 @@ def get_employee(employee_id: str):
 def delete_employee(employee_id: str):
     cluster = Cluster()
     session = cluster.connect('test')
-    query = "DELETE FROM employee WHERE employ_id=?"
+    query = "DELETE FROM employee WHERE employ_id=? ;"
     prepared = session.prepare(query)
     bound_stsm = prepared.bind((employee_id,))
     rows = session.execute(bound_stsm)
