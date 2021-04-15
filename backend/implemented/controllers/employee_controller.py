@@ -96,10 +96,6 @@ def post_employees(employee_post_request_body=None):  # noqa: E501
 
     return employee_id
 
-
-    return 'do some magic!'
-
-
 def put_employee(employee_id, employee_put_request_body=None):  # noqa: E501
     """put_employee
 
@@ -112,7 +108,17 @@ def put_employee(employee_id, employee_put_request_body=None):  # noqa: E501
 
     :rtype: Employee
     """
+    
     if connexion.request.is_json:
         employee_put_request_body = EmployeePutRequestBody.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+
+    cluster = Cluster()
+    session = cluster.connect('test')
+
+    query = "UPDATE employee SET description = ? WHERE employ_id = ? ;"
+    prepared = session.prepare(query)
+    bound_stsm = prepared.bind((employee_put_request_body.description, employee_id,))
+    rows = session.execute(bound_stsm)
+
+    return employee_id
 
