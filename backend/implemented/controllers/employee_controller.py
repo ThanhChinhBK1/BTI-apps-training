@@ -5,6 +5,7 @@ import six
 from cassandra.cluster import Cluster
 from werkzeug.exceptions import NotFound
 
+from base.models import EmployeePostRequestBody
 from base.models.employee import Employee  # noqa: E501
 from base import util
 
@@ -54,3 +55,18 @@ def get_employees():  # noqa: E501
             description=row.description
         ) for row in rows.all()
     ]
+
+
+def post_employees(employee_post_request_body=None):  # noqa: E501
+    """post_employees
+
+    create a new employee # noqa: E501
+
+    :param employee_post_request_body:
+    :type employee_post_request_body: dict | bytes
+
+    :rtype: Employee
+    """
+    if connexion.request.is_json:
+        employee_post_request_body = EmployeePostRequestBody.from_dict(connexion.request.get_json())  # noqa: E501
+    return 'do some magic!'
