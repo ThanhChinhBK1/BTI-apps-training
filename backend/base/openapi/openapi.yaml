@@ -49,6 +49,29 @@ paths:
       - employee
       x-openapi-router-controller: implemented.controllers.employee_controller
   /employees/{employeeId}:
+    delete:
+      description: Get a list of action recommendation by targetType and targetId
+      operationId: delete_employee
+      parameters:
+      - explode: false
+        in: path
+        name: employeeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+          description: OK
+        default:
+          description: Unexpected error
+      tags:
+      - employee
+      x-openapi-router-controller: implemented.controllers.employee_controller
     get:
       description: Get a list of action recommendation by targetType and targetId
       operationId: get_employee

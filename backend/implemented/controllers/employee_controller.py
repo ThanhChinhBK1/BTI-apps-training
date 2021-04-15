@@ -55,13 +55,14 @@ def get_employees():  # noqa: E501
         ) for row in rows.all()
     ]
 
-def delete_employee(employ_id):  # noqa: E501
+def delete_employee(employee_id):  # noqa: E501
 
     cluster = Cluster()
     session = cluster.connect('test')
 
     query = "DELETE FROM employee WHERE employ_id=?"
     prepared = session.prepare(query)
-    bound_stsm = prepared.bind((employ_id,))
+    bound_stsm = prepared.bind((employee_id,))
     session.execute(bound_stsm)
-    return employ_id
+    return employee_id
+
