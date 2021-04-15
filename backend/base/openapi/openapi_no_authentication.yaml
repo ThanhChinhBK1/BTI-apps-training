@@ -48,6 +48,26 @@ paths:
       tags:
       - employee
       x-openapi-router-controller: implemented.controllers.employee_controller
+    post:
+      description: create a new employee
+      operationId: post_employees
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeePostRequestBody'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+          description: CREATED
+        default:
+          description: Unexpected Error
+      tags:
+      - employee
+      x-openapi-router-controller: implemented.controllers.employee_controller
   /employees/{employeeId}:
     delete:
       description: Delete a list of action recommendation by targetType and targetId
@@ -97,6 +117,17 @@ paths:
       x-openapi-router-controller: implemented.controllers.employee_controller
 components:
   schemas:
+    EmployeePostRequestBody:
+      description: Post request body to create a new employee
+      example:
+        name: name
+        description: description
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+      type: object
     Employee:
       description: Basic response with application status code
       example:

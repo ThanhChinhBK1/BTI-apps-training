@@ -13,6 +13,14 @@ tags:
     description: API on employee
 components:
   schemas:
+    EmployeePostRequestBody:
+      type: object
+      description: Post request body to create a new employee
+      properties:
+        name:
+          type: string
+        description:
+          type: string
     Employee:
       type: object
       description: Basic response with application status code
@@ -49,6 +57,26 @@ paths:
         - root
       security: []
   /employees:
+    post:
+      operationId: post_employees
+      tags:
+        - employee
+      description: create a new employee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeePostRequestBody'
+      responses:
+        "201":
+          description: CREATED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        default:
+          description: Unexpected Error
+      x-openapi-router-controller: implemented.controllers.employee_controller
     get:
       operationId: get_employees
       tags:
