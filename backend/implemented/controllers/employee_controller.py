@@ -8,6 +8,8 @@ from werkzeug.exceptions import NotFound
 from base.models import EmployeePostRequestBody
 from base.models.employee import Employee  # noqa: E501
 from base import util
+import uuid
+from typing import List
 
 
 def get_employee(employee_id):  # noqa: E501
@@ -78,7 +80,18 @@ def post_employees(employee_post_request_body=None):  # noqa: E501
 
     :rtype: Employee
     """
+
     if connexion.request.is_json:
         employee_post_request_body = EmployeePostRequestBody.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+
+    cluster = Cluster()
+    session = cluster.connect('test')
+    employee_id = str(uuid.uuid4())
+
+    query = "INSERT INTO employee (employ_id, name, description ) VALUES ( ?, ?, ?)"
+    prepared = session.prepare(query)
+    bound_stsm = prepared.bind((employee_id, employee_post_request_body.name, employee_post_request_body.description,))
+    rows = session.execute(bound_stsm)
+
+    return employee_id
 
