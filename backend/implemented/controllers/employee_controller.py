@@ -1,4 +1,7 @@
 from typing import List
+from base.models import EmployeePostRequestBody
+
+import uuid
 
 import connexion
 import six
@@ -87,5 +90,14 @@ def post_employees(employee_post_request_body=None):  # noqa: E501
     """
     if connexion.request.is_json:
         employee_post_request_body = EmployeePostRequestBody.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+        """create employees data."""
+    id = str(uuid.uuid4())
+    cluster = Cluster()
+    session = cluster.connect('test')
+    query = "INSERT INTO employee (employ_id, name, description ) VALUES (?, ?, ?) ;"
+
+    prepared = session.prepare(query)
+    bound_stsm = prepared.bind((id, employee_post_request_body.name, employee_post_request_body.description,))
+    session.execute(bound_stsm)
+    return id
 
