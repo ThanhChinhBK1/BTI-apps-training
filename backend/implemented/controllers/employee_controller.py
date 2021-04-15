@@ -108,7 +108,7 @@ def put_employee(employee_id, employee_put_request_body=None):  # noqa: E501
 
     :rtype: Employee
     """
-    
+
     if connexion.request.is_json:
         employee_put_request_body = EmployeePutRequestBody.from_dict(connexion.request.get_json())  # noqa: E501
 
