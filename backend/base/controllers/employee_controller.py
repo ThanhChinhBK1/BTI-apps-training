@@ -3,6 +3,7 @@ import six
 
 from base.models.employee import Employee  # noqa: E501
 from base.models.employee_post_request_body import EmployeePostRequestBody  # noqa: E501
+from base.models.employee_put_request_body import EmployeePutRequestBody  # noqa: E501
 from base import util
 
 
@@ -42,4 +43,21 @@ def post_employees(employee_post_request_body=None):  # noqa: E501
     """
     if connexion.request.is_json:
         employee_post_request_body = EmployeePostRequestBody.from_dict(connexion.request.get_json())  # noqa: E501
+    return 'do some magic!'
+
+
+def put_employee(employee_id, employee_put_request_body=None):  # noqa: E501
+    """put_employee
+
+    update description for an employee # noqa: E501
+
+    :param employee_id: 
+    :type employee_id: str
+    :param employee_put_request_body: 
+    :type employee_put_request_body: dict | bytes
+
+    :rtype: Employee
+    """
+    if connexion.request.is_json:
+        employee_put_request_body = EmployeePutRequestBody.from_dict(connexion.request.get_json())  # noqa: E501
     return 'do some magic!'

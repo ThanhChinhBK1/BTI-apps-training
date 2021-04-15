@@ -92,6 +92,34 @@ paths:
       tags:
       - employee
       x-openapi-router-controller: implemented.controllers.employee_controller
+    put:
+      description: update description for an employee
+      operationId: put_employee
+      parameters:
+      - explode: false
+        in: path
+        name: employeeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeePutRequestBody'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+          description: OK
+        default:
+          description: Unexpected Error
+      tags:
+      - employee
+      x-openapi-router-controller: implemented.controllers.employee_controller
 components:
   schemas:
     EmployeePostRequestBody:
@@ -102,6 +130,14 @@ components:
       properties:
         name:
           type: string
+        description:
+          type: string
+      type: object
+    EmployeePutRequestBody:
+      description: Put request body to update an employee
+      example:
+        description: description
+      properties:
         description:
           type: string
       type: object

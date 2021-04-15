@@ -8,6 +8,7 @@ from six import BytesIO
 
 from base.models.employee import Employee  # noqa: E501
 from base.models.employee_post_request_body import EmployeePostRequestBody  # noqa: E501
+from base.models.employee_put_request_body import EmployeePutRequestBody  # noqa: E501
 from base.test import BaseTestCase
 
 
@@ -62,6 +63,27 @@ class TestEmployeeController(BaseTestCase):
             method='POST',
             headers=headers,
             data=json.dumps(employee_post_request_body),
+            content_type='application/json')
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
+    def test_put_employee(self):
+        """Test case for put_employee
+
+        
+        """
+        employee_put_request_body = {
+  "description" : "description"
+}
+        headers = { 
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+        response = self.client.open(
+            '/impulse-apps-training/employees/{employee_id}'.format(employee_id='employee_id_example'),
+            method='PUT',
+            headers=headers,
+            data=json.dumps(employee_put_request_body),
             content_type='application/json')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
