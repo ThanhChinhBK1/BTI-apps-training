@@ -16,17 +16,33 @@ def get_employees():
         print(row)
 
 def create_employee(namae, setsumei):
-    id = uuid.uuid4()
+    id = str(uuid.uuid4())
     cluster = Cluster()
     session = cluster.connect('test')
 
-    session.execute("INSERT INTO employee (employ_id, name, description) VALUES (id, 'namae', 'setsumei')")
+    query = "INSERT INTO employee (employ_id, name, description) VALUES (?, ?, ?)"
+    prepared = session.prepare(query)
+    bound_stsm = prepared.bind((id,namae,setsumei,))
+
+    session.execute(bound_stsm)
 
 def get_employee(id):
     cluster = Cluster()
     session = cluster.connect('test')
-    row = session.execute("SELECT * FROM employee WHERE employ_id = 'id'")
+    query = "SELECT * FROM employee WHERE employ_id = ?"
+    prepared = session.prepare(query)
+    bound_stsm = prepared.bind((id,))
+    row = session.execute(bound_stsm)
     print(row)
+
+
+def delete_employee(id):
+    cluster = Cluster()
+    session = cluster.connect('test')
+    query = "DELETE FROM employee WHERE employ_id = ?"
+    prepared = session.prepare(query)
+    bound_stsm = prepared.bind((id,))
+    session.execute(bound_stsm)
 
 def main():
     """Main."""
@@ -57,6 +73,8 @@ def main():
         create_employee(name,description)
     elif args.action == "get_employee":
         get_employee(employee_id)
+    elif args.action == "delete_employee":
+        delete_employee(employee_id)
     else:
         print("This action is not supported!")
 
