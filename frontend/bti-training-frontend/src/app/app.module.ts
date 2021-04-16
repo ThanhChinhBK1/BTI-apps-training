@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import {HttpClientModule} from "@angular/common/http";
 import {Configuration, ConfigurationParameters, ImpulseAppsApiModule} from "./services/bti-training-api";
+import { CreateEmployeeComponent } from './create-employee/create-employee.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 export function impulseAppsApiConfigFactory(): Configuration {
     const params: ConfigurationParameters = {
@@ -19,13 +21,15 @@ export function impulseAppsApiConfigFactory(): Configuration {
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    CreateEmployeeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ImpulseAppsApiModule.forRoot(impulseAppsApiConfigFactory)
+    ImpulseAppsApiModule.forRoot(impulseAppsApiConfigFactory),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,15 @@
-<p>employee-list works!</p>
+<button type="button" (click)=""> 新規作成画面  </button><button type="button">削除画面</button>
+<table class="table">
+  <thead>
+  <tr><th>employee Id</th><th>Name</th><th>Description</th></tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let row of employees; let i=index">
+       <td>{{row.employeeId}}</td>
+      <td>{{row.name}}</td>
+      <td>{{row.description}}</td>
+    </tr>
+  </tbody>
+</table>
+
