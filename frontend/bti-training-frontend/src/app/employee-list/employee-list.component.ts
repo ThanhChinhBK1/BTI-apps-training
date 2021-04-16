@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {EmployeeService} from "../services/bti-training-api/api/employee.service";
+import {Employee} from "../services/bti-training-api/model/employee";
 
 @Component({
   selector: 'app-employee-list',
@@ -8,10 +9,11 @@ import {EmployeeService} from "../services/bti-training-api/api/employee.service
 })
 export class EmployeeListComponent implements OnInit {
 
+  employees: Employee[];
   constructor(private employeeService: EmployeeService) { }
 
   ngOnInit(): void {
-    this.employeeService.getEmployees().subscribe((v:any)=>console.log(v));
+    this.employeeService.getEmployees().subscribe((employees) => { this.employees = employees });
   }
 
 }

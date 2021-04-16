@@ -6,27 +6,10 @@
   <div class="block-body">
     <ul>
       <!-- routing のためのリンク. routerLink に app.module.ts で定義したテーブル: ROUTE_TABLE に登録した path をセットする -->
-      <li><a routerLink="/create-employee">create-employeeに遷移</a></li>
+      <li><a routerLink="/employee-list">employee-listに遷移</a></li>
       <li><a routerLink="/delete-employee">delete-employeeに遷移</a></li>
 
     </ul>
   </div>
 </div>
-
-<table>
-      <tr>
-    <th>id</th>
-    <th>name</th>
-    <th>description</th>
-  </tr>
-　<ng-container *ngFor="let row of employees ; let i = index">
-　　
-
-　 　<tr>
-  <td>{{row.employeeId}}</td>
-  <td>{{row.name}}</td>
-  <td>{{row.description}}</td>
-    </tr>
-　　
-　</ng-container>
-</table>
+<p>create-employee works!</p>
