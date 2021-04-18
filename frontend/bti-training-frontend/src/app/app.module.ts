@@ -9,6 +9,11 @@ import {Configuration, ConfigurationParameters, ImpulseAppsApiModule} from "./se
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';
 import { DeleteEmployeeComponent } from './delete-employee/delete-employee.component';
 import {Routes} from "@angular/router";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatTableModule} from "@angular/material/table";
+
+
 
 const ROUTE_TABLE: Routes = [
   { path: '', component: EmployeeListComponent },
@@ -28,13 +33,17 @@ export function impulseAppsApiConfigFactory(): Configuration {
     AppComponent,
     EmployeeListComponent,
     CreateEmployeeComponent,
-    DeleteEmployeeComponent
+    DeleteEmployeeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ImpulseAppsApiModule.forRoot(impulseAppsApiConfigFactory)
+    ImpulseAppsApiModule.forRoot(impulseAppsApiConfigFactory),
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

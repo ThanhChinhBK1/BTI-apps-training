@@ -1,13 +1,13 @@
 <div>
   <div class="block-header">
-    <p>Routing によるページ切り替えの動作確認を行う</p>
+    <p>社員データ一覧</p>
   </div>
 
   <div class="block-body">
     <ul>
       <!-- routing のためのリンク. routerLink に app.module.ts で定義したテーブル: ROUTE_TABLE に登録した path をセットする -->
-      <li><a routerLink="/create-employee">create-employeeに遷移</a></li>
-      <li><a routerLink="/delete-employee">delete-employeeに遷移</a></li>
+     <button class="button" type="submit"><li><a routerLink="/create-employee">create-employee</a></li></button>
+      <button class="button" type="submit"><li><a routerLink="/delete-employee">delete-employee</a></li></button>
 
     </ul>
   </div>
@@ -30,3 +30,5 @@
 　　
 　</ng-container>
 </table>
+
+

@@ -6,10 +6,37 @@
   <div class="block-body">
     <ul>
       <!-- routing のためのリンク. routerLink に app.module.ts で定義したテーブル: ROUTE_TABLE に登録した path をセットする -->
-      <li><a routerLink="/employee-list">employee-listに遷移</a></li>
-      <li><a routerLink="/delete-employee">delete-employeeに遷移</a></li>
+      <button class="button" type="submit"><li><a routerLink="/employee-list">employee-list</a></li></button>
+      <button class="button" type="submit"><li><a routerLink="/delete-employee">delete-listに遷移</a></li></button>
 
     </ul>
   </div>
 </div>
+
 <p>create-employee works!</p>
+<h3>CreateEmployee</h3>
+
+
+
+
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label for="name">
+      Name
+    </label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+
+  <div>
+    <label for="description">
+     Description
+    </label>
+    <input id="description" type="text" formControlName="description">
+  </div>
+
+  <button class="button" type="submit">Create</button>
+
+</form>
+
+

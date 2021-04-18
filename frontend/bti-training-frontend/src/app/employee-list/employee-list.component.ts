@@ -7,13 +7,15 @@ import {Employee} from "../services/bti-training-api/model/employee";
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.scss']
 })
-export class EmployeeListComponent implements OnInit {
+export class EmployeeListComponent {
+
 
   employees: Employee[];
   constructor(private employeeService: EmployeeService) { }
 
   ngOnInit(): void {
-    this.employeeService.getEmployees().subscribe((employees) => { this.employees = employees });
+    this.employeeService.getEmployees().subscribe((employees) => { this.employees = employees.filter((employee)=>employee.name !== "aaa") });
   }
+
 
 }
