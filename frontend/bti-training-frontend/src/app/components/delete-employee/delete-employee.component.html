@@ -1,0 +1,23 @@
+<h3>削除画面</h3>
+
+<div class="cart-item" *ngFor="let row of employees; let i = index">
+  <span>{{ row.employeeId }} </span>
+</div>
+
+<a routerLink="/employee-list"><button class="button" type="submit">一覧画面</button></a>
+<a routerLink="/create-employee"><button class="button" type="submit">新規作成画面</button></a>
+
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label for="id">
+      ・ID
+    </label>
+    <input id="id" type="text" formControlName="employeeId">
+  </div>
+
+  <button class="button" type="submit">削除</button>
+
+
+
+</form>

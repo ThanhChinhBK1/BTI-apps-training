@@ -15,26 +15,31 @@ class EmployeePostRequestBody(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, name=None, description=None):  # noqa: E501
+    def __init__(self, name=None, department=None, team=None):  # noqa: E501
         """EmployeePostRequestBody - a model defined in OpenAPI
 
         :param name: The name of this EmployeePostRequestBody.  # noqa: E501
         :type name: str
-        :param description: The description of this EmployeePostRequestBody.  # noqa: E501
-        :type description: str
+        :param department: The department of this EmployeePostRequestBody.  # noqa: E501
+        :type department: str
+        :param team: The team of this EmployeePostRequestBody.  # noqa: E501
+        :type team: str
         """
         self.openapi_types = {
             'name': str,
-            'description': str
+            'department': str,
+            'team': str
         }
 
         self.attribute_map = {
             'name': 'name',
-            'description': 'description'
+            'department': 'department',
+            'team': 'team'
         }
 
         self._name = name
-        self._description = description
+        self._department = department
+        self._team = team
 
     @classmethod
     def from_dict(cls, dikt) -> 'EmployeePostRequestBody':
@@ -69,22 +74,43 @@ class EmployeePostRequestBody(Model):
         self._name = name
 
     @property
-    def description(self):
-        """Gets the description of this EmployeePostRequestBody.
+    def department(self):
+        """Gets the department of this EmployeePostRequestBody.
 
 
-        :return: The description of this EmployeePostRequestBody.
+        :return: The department of this EmployeePostRequestBody.
         :rtype: str
         """
-        return self._description
+        return self._department
 
-    @description.setter
-    def description(self, description):
-        """Sets the description of this EmployeePostRequestBody.
+    @department.setter
+    def department(self, department):
+        """Sets the department of this EmployeePostRequestBody.
 
 
-        :param description: The description of this EmployeePostRequestBody.
-        :type description: str
+        :param department: The department of this EmployeePostRequestBody.
+        :type department: str
         """
 
-        self._description = description
+        self._department = department
+
+    @property
+    def team(self):
+        """Gets the team of this EmployeePostRequestBody.
+
+
+        :return: The team of this EmployeePostRequestBody.
+        :rtype: str
+        """
+        return self._team
+
+    @team.setter
+    def team(self, team):
+        """Sets the team of this EmployeePostRequestBody.
+
+
+        :param team: The team of this EmployeePostRequestBody.
+        :type team: str
+        """
+
+        self._team = team

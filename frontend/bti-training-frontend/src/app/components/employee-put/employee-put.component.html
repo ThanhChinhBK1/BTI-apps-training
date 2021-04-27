@@ -1,0 +1,36 @@
+<h3>編集画面</h3>
+
+<div class="cart-item" *ngFor="let row of employees; let i = index">
+  <span>{{ row.name }} </span>
+  <span>{{ row.description | currency }}</span>
+</div>
+
+<a routerLink="/employee-list"><button class="button" type="submit">一覧画面</button></a>
+
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+
+
+
+  <div>
+    <label for="name">
+      ・ID:
+    </label>
+  </div>
+
+  <div>
+    <label for="name">
+      ・名前
+    </label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+
+  <div>
+    <label for="description">
+      ・特徴
+    </label>
+    <input id="description" type="text" formControlName="description">
+  </div>
+
+  <button class="button" type="submit">変更</button>
+
+</form>

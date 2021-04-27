@@ -34,8 +34,25 @@ paths:
       x-openapi-router-controller: base.controllers.root_controller
   /employees:
     get:
-      description: get all employees
+      description: get employees under several conditions
       operationId: get_employees
+      parameters:
+      - explode: true
+        in: query
+        name: random_get
+        required: false
+        schema:
+          description: select an employee at random
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: participant
+        required: false
+        schema:
+          description: get the participants in the online lunch meeting
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -68,14 +85,14 @@ paths:
       tags:
       - employee
       x-openapi-router-controller: implemented.controllers.employee_controller
-  /employees/{employeeId}:
+  /employees/{name}:
     delete:
       description: Delete a list of action recommendation by targetType and targetId
       operationId: delete_employee
       parameters:
       - explode: false
         in: path
-        name: employeeId
+        name: name
         required: true
         schema:
           type: string
@@ -98,7 +115,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: employeeId
+        name: name
         required: true
         schema:
           type: string
@@ -116,12 +133,12 @@ paths:
       - employee
       x-openapi-router-controller: implemented.controllers.employee_controller
     put:
-      description: update description for an employee
-      operationId: put_employee
+      description: update omittetd and participate for the employee
+      operationId: put_employee_by_name
       parameters:
       - explode: false
         in: path
-        name: employeeId
+        name: name
         required: true
         schema:
           type: string
@@ -149,34 +166,46 @@ components:
       description: Post request body to create a new employee
       example:
         name: name
-        description: description
+        team: team
+        department: department
       properties:
         name:
           type: string
-        description:
+        department:
+          type: string
+        team:
           type: string
       type: object
     EmployeePutRequestBody:
       description: Put request body to update an employee
       example:
-        description: description
+        participate: true
+        omitted: true
       properties:
-        description:
-          type: string
+        omitted:
+          type: boolean
+        participate:
+          type: boolean
       type: object
     Employee:
       description: Basic response with application status code
       example:
+        participate: true
         name: name
-        description: description
-        employeeId: employeeId
+        omitted: true
+        team: team
+        department: department
       properties:
-        employeeId:
-          type: string
         name:
           type: string
-        description:
+        department:
           type: string
+        team:
+          type: string
+        omitted:
+          type: boolean
+        participate:
+          type: boolean
       type: object
     Employees:
       description: list of employee

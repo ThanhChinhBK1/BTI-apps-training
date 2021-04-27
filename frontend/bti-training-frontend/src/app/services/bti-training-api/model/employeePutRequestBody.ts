@@ -15,6 +15,7 @@
  * Put request body to update an employee
  */
 export interface EmployeePutRequestBody { 
-    description?: string;
+    omitted?: boolean;
+    participate?: boolean;
 }
 

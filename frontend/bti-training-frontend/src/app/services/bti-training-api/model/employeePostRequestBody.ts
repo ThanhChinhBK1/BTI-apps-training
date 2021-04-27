@@ -16,6 +16,7 @@
  */
 export interface EmployeePostRequestBody { 
     name?: string;
-    description?: string;
+    department?: string;
+    team?: string;
 }
 

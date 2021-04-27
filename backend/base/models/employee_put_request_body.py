@@ -15,21 +15,26 @@ class EmployeePutRequestBody(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, description=None):  # noqa: E501
+    def __init__(self, omitted=None, participate=None):  # noqa: E501
         """EmployeePutRequestBody - a model defined in OpenAPI
 
-        :param description: The description of this EmployeePutRequestBody.  # noqa: E501
-        :type description: str
+        :param omitted: The omitted of this EmployeePutRequestBody.  # noqa: E501
+        :type omitted: bool
+        :param participate: The participate of this EmployeePutRequestBody.  # noqa: E501
+        :type participate: bool
         """
         self.openapi_types = {
-            'description': str
+            'omitted': bool,
+            'participate': bool
         }
 
         self.attribute_map = {
-            'description': 'description'
+            'omitted': 'omitted',
+            'participate': 'participate'
         }
 
-        self._description = description
+        self._omitted = omitted
+        self._participate = participate
 
     @classmethod
     def from_dict(cls, dikt) -> 'EmployeePutRequestBody':
@@ -43,22 +48,43 @@ class EmployeePutRequestBody(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def description(self):
-        """Gets the description of this EmployeePutRequestBody.
+    def omitted(self):
+        """Gets the omitted of this EmployeePutRequestBody.
 
 
-        :return: The description of this EmployeePutRequestBody.
-        :rtype: str
+        :return: The omitted of this EmployeePutRequestBody.
+        :rtype: bool
         """
-        return self._description
+        return self._omitted
 
-    @description.setter
-    def description(self, description):
-        """Sets the description of this EmployeePutRequestBody.
+    @omitted.setter
+    def omitted(self, omitted):
+        """Sets the omitted of this EmployeePutRequestBody.
 
 
-        :param description: The description of this EmployeePutRequestBody.
-        :type description: str
+        :param omitted: The omitted of this EmployeePutRequestBody.
+        :type omitted: bool
         """
 
-        self._description = description
+        self._omitted = omitted
+
+    @property
+    def participate(self):
+        """Gets the participate of this EmployeePutRequestBody.
+
+
+        :return: The participate of this EmployeePutRequestBody.
+        :rtype: bool
+        """
+        return self._participate
+
+    @participate.setter
+    def participate(self, participate):
+        """Sets the participate of this EmployeePutRequestBody.
+
+
+        :param participate: The participate of this EmployeePutRequestBody.
+        :type participate: bool
+        """
+
+        self._participate = participate

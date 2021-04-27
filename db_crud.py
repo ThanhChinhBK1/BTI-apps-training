@@ -15,25 +15,25 @@ def get_employees():
     for row in rows.all():
         print(row)
 
-def create_employee(namae, setsumei):
-    id = str(uuid.uuid4())
+# def create_employee(namae, setsumei):
+#     id = str(uuid.uuid4())
+#     cluster = Cluster()
+#     session = cluster.connect('test')
+#
+#     query = "INSERT INTO employee (employ_id, name, description) VALUES (?, ?, ?)"
+#     prepared = session.prepare(query)
+#     bound_stsm = prepared.bind((id,namae,setsumei,))
+#
+#     session.execute(bound_stsm)
+
+def get_employee(namae):
     cluster = Cluster()
     session = cluster.connect('test')
-
-    query = "INSERT INTO employee (employ_id, name, description) VALUES (?, ?, ?)"
+    query = "SELECT * FROM btiemployee WHERE name = ?"
     prepared = session.prepare(query)
-    bound_stsm = prepared.bind((id,namae,setsumei,))
-
-    session.execute(bound_stsm)
-
-def get_employee(id):
-    cluster = Cluster()
-    session = cluster.connect('test')
-    query = "SELECT * FROM employee WHERE employ_id = ?"
-    prepared = session.prepare(query)
-    bound_stsm = prepared.bind((id,))
+    bound_stsm = prepared.bind((namae,))
     row = session.execute(bound_stsm)
-    print(row)
+    # print(row)
 
 
 def delete_employee(id):
@@ -43,6 +43,25 @@ def delete_employee(id):
     prepared = session.prepare(query)
     bound_stsm = prepared.bind((id,))
     session.execute(bound_stsm)
+
+
+def get_employee_at_ramdom():
+    cluster = Cluster()
+    session = cluster.connect('test2')
+    name_list = session.execute("SELECT name FROM btiemployee WHERE omitted = False ALLOW FILTERING")
+    name_list_shuffled = name_list.all()
+    random.shuffle(name_list_shuffled)
+    print(name_list_shuffled)
+
+
+def put_employee(namae):
+    cluster = Cluster()
+    session = cluster.connect('test2')
+    query = "UPDATE btiemployee SET participate = False WHERE name = ? ;"
+    prepared = session.prepare(query)
+    bound_stsm = prepared.bind((namae,))
+    session.execute(bound_stsm)
+
 
 def main():
     """Main."""

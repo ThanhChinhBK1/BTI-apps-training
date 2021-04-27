@@ -89,16 +89,16 @@ export class EmployeeService {
 
     /**
      * Delete a list of action recommendation by targetType and targetId
-     * @param employeeId 
+     * @param name 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteEmployee(employeeId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<Employee>;
-    public deleteEmployee(employeeId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<Employee>>;
-    public deleteEmployee(employeeId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<Employee>>;
-    public deleteEmployee(employeeId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (employeeId === null || employeeId === undefined) {
-            throw new Error('Required parameter employeeId was null or undefined when calling deleteEmployee.');
+    public deleteEmployee(name: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<Employee>;
+    public deleteEmployee(name: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<Employee>>;
+    public deleteEmployee(name: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<Employee>>;
+    public deleteEmployee(name: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling deleteEmployee.');
         }
 
         let headers = this.defaultHeaders;
@@ -121,7 +121,7 @@ export class EmployeeService {
             responseType = 'text';
         }
 
-        return this.httpClient.delete<Employee>(`${this.configuration.basePath}/employees/${encodeURIComponent(String(employeeId))}`,
+        return this.httpClient.delete<Employee>(`${this.configuration.basePath}/employees/${encodeURIComponent(String(name))}`,
             {
                 responseType: <any>responseType,
                 withCredentials: this.configuration.withCredentials,
@@ -134,16 +134,16 @@ export class EmployeeService {
 
     /**
      * Get a list of action recommendation by targetType and targetId
-     * @param employeeId 
+     * @param name 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getEmployee(employeeId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<Employee>;
-    public getEmployee(employeeId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<Employee>>;
-    public getEmployee(employeeId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<Employee>>;
-    public getEmployee(employeeId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (employeeId === null || employeeId === undefined) {
-            throw new Error('Required parameter employeeId was null or undefined when calling getEmployee.');
+    public getEmployee(name: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<Employee>;
+    public getEmployee(name: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<Employee>>;
+    public getEmployee(name: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<Employee>>;
+    public getEmployee(name: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getEmployee.');
         }
 
         let headers = this.defaultHeaders;
@@ -166,7 +166,7 @@ export class EmployeeService {
             responseType = 'text';
         }
 
-        return this.httpClient.get<Employee>(`${this.configuration.basePath}/employees/${encodeURIComponent(String(employeeId))}`,
+        return this.httpClient.get<Employee>(`${this.configuration.basePath}/employees/${encodeURIComponent(String(name))}`,
             {
                 responseType: <any>responseType,
                 withCredentials: this.configuration.withCredentials,
@@ -178,14 +178,26 @@ export class EmployeeService {
     }
 
     /**
-     * get all employees
+     * get employees under several conditions
+     * @param randomGet 
+     * @param participant 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getEmployees(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<Array<Employee>>;
-    public getEmployees(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<Array<Employee>>>;
-    public getEmployees(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<Array<Employee>>>;
-    public getEmployees(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+    public getEmployees(randomGet?: boolean, participant?: boolean, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<Array<Employee>>;
+    public getEmployees(randomGet?: boolean, participant?: boolean, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<Array<Employee>>>;
+    public getEmployees(randomGet?: boolean, participant?: boolean, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<Array<Employee>>>;
+    public getEmployees(randomGet?: boolean, participant?: boolean, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+
+        let queryParameters = new HttpParams({encoder: this.encoder});
+        if (randomGet !== undefined && randomGet !== null) {
+          queryParameters = this.addToHttpParams(queryParameters,
+            <any>randomGet, 'random_get');
+        }
+        if (participant !== undefined && participant !== null) {
+          queryParameters = this.addToHttpParams(queryParameters,
+            <any>participant, 'participant');
+        }
 
         let headers = this.defaultHeaders;
 
@@ -209,6 +221,7 @@ export class EmployeeService {
 
         return this.httpClient.get<Array<Employee>>(`${this.configuration.basePath}/employees`,
             {
+                params: queryParameters,
                 responseType: <any>responseType,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -271,18 +284,18 @@ export class EmployeeService {
     }
 
     /**
-     * update description for an employee
-     * @param employeeId 
+     * update omittetd and participate for the employee
+     * @param name 
      * @param employeePutRequestBody 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public putEmployee(employeeId: string, employeePutRequestBody?: EmployeePutRequestBody, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<Employee>;
-    public putEmployee(employeeId: string, employeePutRequestBody?: EmployeePutRequestBody, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<Employee>>;
-    public putEmployee(employeeId: string, employeePutRequestBody?: EmployeePutRequestBody, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<Employee>>;
-    public putEmployee(employeeId: string, employeePutRequestBody?: EmployeePutRequestBody, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (employeeId === null || employeeId === undefined) {
-            throw new Error('Required parameter employeeId was null or undefined when calling putEmployee.');
+    public putEmployeeByName(name: string, employeePutRequestBody?: EmployeePutRequestBody, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<Employee>;
+    public putEmployeeByName(name: string, employeePutRequestBody?: EmployeePutRequestBody, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<Employee>>;
+    public putEmployeeByName(name: string, employeePutRequestBody?: EmployeePutRequestBody, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<Employee>>;
+    public putEmployeeByName(name: string, employeePutRequestBody?: EmployeePutRequestBody, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putEmployeeByName.');
         }
 
         let headers = this.defaultHeaders;
@@ -314,7 +327,7 @@ export class EmployeeService {
             responseType = 'text';
         }
 
-        return this.httpClient.put<Employee>(`${this.configuration.basePath}/employees/${encodeURIComponent(String(employeeId))}`,
+        return this.httpClient.put<Employee>(`${this.configuration.basePath}/employees/${encodeURIComponent(String(name))}`,
             employeePutRequestBody,
             {
                 responseType: <any>responseType,

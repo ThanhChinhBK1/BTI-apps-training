@@ -19,24 +19,32 @@ components:
       properties:
         name:
           type: string
-        description:
+        department:
+          type: string
+        team:
           type: string
     EmployeePutRequestBody:
       type: object
       description: Put request body to update an employee
       properties:
-        description:
-          type: string
+        omitted:
+          type: boolean
+        participate:
+          type: boolean
     Employee:
       type: object
       description: Basic response with application status code
       properties:
-        employeeId:
-          type: string
         name:
           type: string
-        description:
+        department:
           type: string
+        team:
+          type: string
+        omitted:
+          type: boolean
+        participate:
+          type: boolean
     Employees:
       type: array
       description: list of employee
@@ -62,7 +70,35 @@ paths:
       tags:
         - root
       security: []
+
   /employees:
+    get:
+      operationId: get_employees
+      tags:
+        - employee
+      description: get employees under several conditions
+      parameters:
+        - in: query
+          name: random_get
+          schema:
+            type: boolean
+            description: select an employee at random
+        - in: query
+          name: participant
+          schema:
+            type: boolean
+            description: get the participants in the online lunch meeting
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employees'
+        default:
+          description: Unexpected Error
+      x-openapi-router-controller: implemented.controllers.employee_controller
+
     post:
       operationId: post_employees
       tags:
@@ -83,34 +119,20 @@ paths:
         default:
           description: Unexpected Error
       x-openapi-router-controller: implemented.controllers.employee_controller
-    get:
-      operationId: get_employees
-      tags:
-        - employee
-      description: get all employees
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Employees'
-        default:
-          description: Unexpected Error
-      x-openapi-router-controller: implemented.controllers.employee_controller
-  /employees/{employeeId}:
+
+  /employees/{name}:
     parameters:
-      - name: employeeId
+      - name: name
         in: path
         required: true
         schema:
           type: string
 
     put:
-      operationId: put_employee
+      operationId: put_employee_by_name
       tags:
         - employee
-      description: update description for an employee
+      description: update omittetd and participate for the employee
       requestBody:
         content:
           application/json:
@@ -132,7 +154,6 @@ paths:
       tags:
         - employee
       description: Delete a list of action recommendation by targetType and targetId
-
       responses:
         "200":
           description: OK
@@ -159,3 +180,5 @@ paths:
         default:
           description: Unexpected error
       x-openapi-router-controller: implemented.controllers.employee_controller
+
+

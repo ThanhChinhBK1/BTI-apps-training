@@ -1,0 +1,327 @@
+openapi: 3.0.3
+info:
+  contact:
+    name: Impulse
+  description: OpenAPI definition file for impulse-apps
+  title: apps-training RESTful API
+  version: 0.0.1
+servers:
+- url: /impulse-apps-training
+tags:
+- name: root
+- description: API on employee
+  name: employee
+paths:
+  /:
+    get:
+      description: Test server health
+      operationId: ping
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                res:
+                  value:
+                    appStatusCode: 200
+                    description: Success
+              schema:
+                $ref: '#/components/schemas/BasicResponse'
+          description: OK
+      security: []
+      tags:
+      - root
+      x-accepts: application/json
+  /employees:
+    get:
+      description: get all employees
+      operationId: get_employees
+      parameters:
+      - description: whether he/she participates in the online lunch meeting
+        explode: true
+        in: query
+        name: participate
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: omitted
+        required: false
+        schema:
+          description: whether he/she can't participate in the online lunch meeting
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: team
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employees'
+          description: OK
+        default:
+          description: Unexpected Error
+      tags:
+      - employee
+      x-openapi-router-controller: implemented.controllers.employee_controller
+      x-accepts: application/json
+    post:
+      description: create a new employee
+      operationId: post_employees
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeePostRequestBody'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+          description: CREATED
+        default:
+          description: Unexpected Error
+      tags:
+      - employee
+      x-openapi-router-controller: implemented.controllers.employee_controller
+      x-contentType: application/json
+      x-accepts: application/json
+    put:
+      description: update the omitted value of the employees in a certain team
+      operationId: put_employees_by_team
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employees'
+          description: OK
+        default:
+          description: Unexpected Error
+      tags:
+      - employee
+      x-openapi-router-controller: implemented.controllers.employee_controller
+      x-accepts: application/json
+  /employees/{name}:
+    delete:
+      description: Delete a list of action recommendation by targetType and targetId
+      operationId: delete_employee
+      parameters:
+      - explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+          description: OK
+        default:
+          description: Unexpected Error
+      tags:
+      - employee
+      x-openapi-router-controller: implemented.controllers.employee_controller
+      x-accepts: application/json
+    get:
+      description: Get a list of action recommendation by targetType and targetId
+      operationId: get_employee
+      parameters:
+      - explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+          description: OK
+        default:
+          description: Unexpected error
+      tags:
+      - employee
+      x-openapi-router-controller: implemented.controllers.employee_controller
+      x-accepts: application/json
+    put:
+      description: update omittetd and participate for the employee
+      operationId: put_employee_by_name
+      parameters:
+      - explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeePutRequestBody'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+          description: OK
+        default:
+          description: Unexpected Error
+      tags:
+      - employee
+      x-openapi-router-controller: implemented.controllers.employee_controller
+      x-contentType: application/json
+      x-accepts: application/json
+  /employees/getParticipants:
+    get:
+      description: get employees with 'participate=true'
+      operationId: get_participants
+      parameters:
+      - description: whether he/she participates in the online lunch meeting
+        explode: true
+        in: query
+        name: participate
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+          description: OK
+        default:
+          description: Unexpected Error
+      tags:
+      - employee
+      x-openapi-router-controller: implemented.controllers.employee_controller
+      x-accepts: application/json
+  /employees/getAtRandom:
+    get:
+      description: get an employee with 'omitted=false' at random
+      operationId: get_employee_at_random
+      parameters:
+      - description: get an employee from the list of employees with 'omitted=false'
+        explode: true
+        in: query
+        name: omitted
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: get an employee at random
+        explode: true
+        in: query
+        name: random
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: get one employee
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+          description: OK
+        default:
+          description: Unexpected Error
+      tags:
+      - employee
+      x-openapi-router-controller: implemented.controllers.employee_controller
+      x-accepts: application/json
+components:
+  schemas:
+    EmployeePostRequestBody:
+      description: Post request body to create a new employee
+      example:
+        name: name
+        team: team
+        department: department
+      properties:
+        name:
+          type: string
+        department:
+          type: string
+        team:
+          type: string
+      type: object
+    EmployeePutRequestBody:
+      description: Put request body to update an employee
+      example:
+        participate: true
+        omitted: true
+      properties:
+        omitted:
+          type: boolean
+        participate:
+          type: boolean
+      type: object
+    Employee:
+      description: Basic response with application status code
+      example:
+        participate: true
+        name: name
+        omitted: true
+        team: team
+        department: department
+      properties:
+        name:
+          type: string
+        department:
+          type: string
+        team:
+          type: string
+        omitted:
+          type: boolean
+        participate:
+          type: boolean
+      type: object
+    Employees:
+      description: list of employee
+      items:
+        $ref: '#/components/schemas/Employee'
+      type: array
+    BasicResponse:
+      description: Basic response with application status code
+      example:
+        description: description
+        appStatusCode: 0
+      properties:
+        appStatusCode:
+          type: integer
+        description:
+          type: string
+      required:
+      - appStatusCode
+      - description
+      type: object
+
