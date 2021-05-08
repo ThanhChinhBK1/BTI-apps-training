@@ -1,7 +1,8 @@
-<a routerLink="/create-employee"><button class="button" type="submit">新規作成画面</button></a>
-<a routerLink="/delete-employee"><button class="button" type="submit">削除画面</button></a>
+<h2 style="text-align:center">
+  参加者の一覧です
+</h2>
 
-<table>
+<table align="center">
   <head>
   <title>新入社員</title>
 
@@ -9,7 +10,7 @@
   <table border="3">
 
   <body>
-  <tr><th>ID</th><th>名前</th><th>説明</th></tr>
+  <tr><th>名前</th><th>部署</th><th>チーム</th></tr>
   <tr *ngFor="let row of employees ; let i = index">
     <td>{{row.name}}</td>
     <td>{{row.department}}</td>

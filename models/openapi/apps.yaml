@@ -23,6 +23,8 @@ components:
           type: string
         team:
           type: string
+        mail:
+          type: string
     EmployeePutRequestBody:
       type: object
       description: Put request body to update an employee
@@ -35,11 +37,15 @@ components:
       type: object
       description: Basic response with application status code
       properties:
+        id:
+          type: string
         name:
           type: string
         department:
           type: string
         team:
+          type: string
+        mail:
           type: string
         omitted:
           type: boolean
@@ -120,13 +126,29 @@ paths:
           description: Unexpected Error
       x-openapi-router-controller: implemented.controllers.employee_controller
 
-  /employees/{name}:
+  /employees/{employeeId}:
     parameters:
-      - name: name
+      - name: employeeId
         in: path
         required: true
         schema:
           type: string
+
+    get:
+      operationId: get_employee
+      tags:
+        - employee
+      description: Get a list of action recommendation by targetType and targetId
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+        default:
+          description: Unexpected error
+      x-openapi-router-controller: implemented.controllers.employee_controller
 
     put:
       operationId: put_employee_by_name
@@ -165,20 +187,33 @@ paths:
           description: Unexpected Error
       x-openapi-router-controller: implemented.controllers.employee_controller
 
-    get:
-      operationId: get_employee
+  /teams/{teamId}:
+    parameters:
+      - name: teamId
+        in: path
+        required: true
+        schema:
+          type: string
+    put:
+      operationId: put_employee_by_team
       tags:
         - employee
-      description: Get a list of action recommendation by targetType and targetId
+      description: update omittetd and participate for the employees in the team
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeePutRequestBody'
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Employee"
+                $ref: '#/components/schemas/Employee'
         default:
-          description: Unexpected error
+          description: Unexpected Error
       x-openapi-router-controller: implemented.controllers.employee_controller
+
 
 

@@ -24,7 +24,7 @@ class TestEmployeeController(BaseTestCase):
             'Accept': 'application/json',
         }
         response = self.client.open(
-            '/impulse-apps-training/employees/{name}'.format(name='name_example'),
+            '/impulse-apps-training/employees/{employee_id}'.format(employee_id='employee_id_example'),
             method='DELETE',
             headers=headers)
         self.assert200(response,
@@ -39,7 +39,7 @@ class TestEmployeeController(BaseTestCase):
             'Accept': 'application/json',
         }
         response = self.client.open(
-            '/impulse-apps-training/employees/{name}'.format(name='name_example'),
+            '/impulse-apps-training/employees/{employee_id}'.format(employee_id='employee_id_example'),
             method='GET',
             headers=headers)
         self.assert200(response,
@@ -69,6 +69,7 @@ class TestEmployeeController(BaseTestCase):
         
         """
         employee_post_request_body = {
+  "mail" : "mail",
   "name" : "name",
   "team" : "team",
   "department" : "department"
@@ -100,7 +101,29 @@ class TestEmployeeController(BaseTestCase):
             'Content-Type': 'application/json',
         }
         response = self.client.open(
-            '/impulse-apps-training/employees/{name}'.format(name='name_example'),
+            '/impulse-apps-training/employees/{employee_id}'.format(employee_id='employee_id_example'),
+            method='PUT',
+            headers=headers,
+            data=json.dumps(employee_put_request_body),
+            content_type='application/json')
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
+    def test_put_employee_by_team(self):
+        """Test case for put_employee_by_team
+
+        
+        """
+        employee_put_request_body = {
+  "participate" : true,
+  "omitted" : true
+}
+        headers = { 
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+        response = self.client.open(
+            '/impulse-apps-training/teams/{team_id}'.format(team_id='team_id_example'),
             method='PUT',
             headers=headers,
             data=json.dumps(employee_put_request_body),

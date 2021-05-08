@@ -4,19 +4,16 @@ All URIs are relative to *http://localhost/impulse-apps-training*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteEmployee**](EmployeeApi.md#deleteEmployee) | **DELETE** /employees/{name} | 
-[**getEmployee**](EmployeeApi.md#getEmployee) | **GET** /employees/{name} | 
-[**getEmployeeAtRandom**](EmployeeApi.md#getEmployeeAtRandom) | **GET** /employees/getAtRandom | 
+[**deleteEmployee**](EmployeeApi.md#deleteEmployee) | **DELETE** /employees/{employeeId} | 
+[**getEmployee**](EmployeeApi.md#getEmployee) | **GET** /employees/{employeeId} | 
 [**getEmployees**](EmployeeApi.md#getEmployees) | **GET** /employees | 
-[**getParticipants**](EmployeeApi.md#getParticipants) | **GET** /employees/getParticipants | 
 [**postEmployees**](EmployeeApi.md#postEmployees) | **POST** /employees | 
-[**putEmployeeByName**](EmployeeApi.md#putEmployeeByName) | **PUT** /employees/{name} | 
-[**putEmployeesByTeam**](EmployeeApi.md#putEmployeesByTeam) | **PUT** /employees | 
+[**putEmployeeByName**](EmployeeApi.md#putEmployeeByName) | **PUT** /employees/{employeeId} | 
 
 
 <a name="deleteEmployee"></a>
 # **deleteEmployee**
-> Employee deleteEmployee(name)
+> Employee deleteEmployee(employeeId)
 
 
 
@@ -37,9 +34,9 @@ public class Example {
     defaultClient.setBasePath("http://localhost/impulse-apps-training");
 
     EmployeeApi apiInstance = new EmployeeApi(defaultClient);
-    String name = "name_example"; // String | 
+    String employeeId = "employeeId_example"; // String | 
     try {
-      Employee result = apiInstance.deleteEmployee(name);
+      Employee result = apiInstance.deleteEmployee(employeeId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling EmployeeApi#deleteEmployee");
@@ -56,7 +53,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**|  |
+ **employeeId** | **String**|  |
 
 ### Return type
 
@@ -79,7 +76,7 @@ No authorization required
 
 <a name="getEmployee"></a>
 # **getEmployee**
-> Employee getEmployee(name)
+> Employee getEmployee(employeeId)
 
 
 
@@ -100,9 +97,9 @@ public class Example {
     defaultClient.setBasePath("http://localhost/impulse-apps-training");
 
     EmployeeApi apiInstance = new EmployeeApi(defaultClient);
-    String name = "name_example"; // String | 
+    String employeeId = "employeeId_example"; // String | 
     try {
-      Employee result = apiInstance.getEmployee(name);
+      Employee result = apiInstance.getEmployee(employeeId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling EmployeeApi#getEmployee");
@@ -119,7 +116,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**|  |
+ **employeeId** | **String**|  |
 
 ### Return type
 
@@ -140,80 +137,13 @@ No authorization required
 **200** | OK |  -  |
 **0** | Unexpected error |  -  |
 
-<a name="getEmployeeAtRandom"></a>
-# **getEmployeeAtRandom**
-> Employee getEmployeeAtRandom(omitted, random, size)
-
-
-
-get an employee with &#39;omitted&#x3D;false&#39; at random
-
-### Example
-```java
-// Import classes:
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.Configuration;
-import org.openapitools.client.models.*;
-import org.openapitools.client.api.EmployeeApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost/impulse-apps-training");
-
-    EmployeeApi apiInstance = new EmployeeApi(defaultClient);
-    Boolean omitted = true; // Boolean | get an employee from the list of employees with 'omitted=false'
-    Boolean random = true; // Boolean | get an employee at random
-    Integer size = 56; // Integer | get one employee
-    try {
-      Employee result = apiInstance.getEmployeeAtRandom(omitted, random, size);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling EmployeeApi#getEmployeeAtRandom");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **omitted** | **Boolean**| get an employee from the list of employees with &#39;omitted&#x3D;false&#39; | [optional]
- **random** | **Boolean**| get an employee at random | [optional]
- **size** | **Integer**| get one employee | [optional]
-
-### Return type
-
-[**Employee**](Employee.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**0** | Unexpected Error |  -  |
-
 <a name="getEmployees"></a>
 # **getEmployees**
-> List&lt;Employee&gt; getEmployees(team, participate, omitted)
+> List&lt;Employee&gt; getEmployees(randomGet, participant)
 
 
 
-get all employees
+get employees under several conditions
 
 ### Example
 ```java
@@ -230,11 +160,10 @@ public class Example {
     defaultClient.setBasePath("http://localhost/impulse-apps-training");
 
     EmployeeApi apiInstance = new EmployeeApi(defaultClient);
-    String team = "team_example"; // String | 
-    Boolean participate = true; // Boolean | whether he/she participates in the online lunch meeting
-    Boolean omitted = true; // Boolean | 
+    Boolean randomGet = true; // Boolean | 
+    Boolean participant = true; // Boolean | 
     try {
-      List<Employee> result = apiInstance.getEmployees(team, participate, omitted);
+      List<Employee> result = apiInstance.getEmployees(randomGet, participant);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling EmployeeApi#getEmployees");
@@ -251,76 +180,12 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **team** | **String**|  |
- **participate** | **Boolean**| whether he/she participates in the online lunch meeting | [optional]
- **omitted** | **Boolean**|  | [optional]
+ **randomGet** | **Boolean**|  | [optional]
+ **participant** | **Boolean**|  | [optional]
 
 ### Return type
 
 [**List&lt;Employee&gt;**](Employee.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**0** | Unexpected Error |  -  |
-
-<a name="getParticipants"></a>
-# **getParticipants**
-> Employee getParticipants(participate)
-
-
-
-get employees with &#39;participate&#x3D;true&#39;
-
-### Example
-```java
-// Import classes:
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.Configuration;
-import org.openapitools.client.models.*;
-import org.openapitools.client.api.EmployeeApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost/impulse-apps-training");
-
-    EmployeeApi apiInstance = new EmployeeApi(defaultClient);
-    Boolean participate = true; // Boolean | whether he/she participates in the online lunch meeting
-    try {
-      Employee result = apiInstance.getParticipants(participate);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling EmployeeApi#getParticipants");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **participate** | **Boolean**| whether he/she participates in the online lunch meeting | [optional]
-
-### Return type
-
-[**Employee**](Employee.md)
 
 ### Authorization
 
@@ -402,7 +267,7 @@ No authorization required
 
 <a name="putEmployeeByName"></a>
 # **putEmployeeByName**
-> Employee putEmployeeByName(name, employeePutRequestBody)
+> Employee putEmployeeByName(employeeId, employeePutRequestBody)
 
 
 
@@ -423,10 +288,10 @@ public class Example {
     defaultClient.setBasePath("http://localhost/impulse-apps-training");
 
     EmployeeApi apiInstance = new EmployeeApi(defaultClient);
-    String name = "name_example"; // String | 
+    String employeeId = "employeeId_example"; // String | 
     EmployeePutRequestBody employeePutRequestBody = new EmployeePutRequestBody(); // EmployeePutRequestBody | 
     try {
-      Employee result = apiInstance.putEmployeeByName(name, employeePutRequestBody);
+      Employee result = apiInstance.putEmployeeByName(employeeId, employeePutRequestBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling EmployeeApi#putEmployeeByName");
@@ -443,7 +308,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**|  |
+ **employeeId** | **String**|  |
  **employeePutRequestBody** | [**EmployeePutRequestBody**](EmployeePutRequestBody.md)|  | [optional]
 
 ### Return type
@@ -457,65 +322,6 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**0** | Unexpected Error |  -  |
-
-<a name="putEmployeesByTeam"></a>
-# **putEmployeesByTeam**
-> List&lt;Employee&gt; putEmployeesByTeam()
-
-
-
-update the omitted value of the employees in a certain team
-
-### Example
-```java
-// Import classes:
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.Configuration;
-import org.openapitools.client.models.*;
-import org.openapitools.client.api.EmployeeApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://localhost/impulse-apps-training");
-
-    EmployeeApi apiInstance = new EmployeeApi(defaultClient);
-    try {
-      List<Employee> result = apiInstance.putEmployeesByTeam();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling EmployeeApi#putEmployeesByTeam");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**List&lt;Employee&gt;**](Employee.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
  - **Accept**: application/json
 
 ### HTTP response details

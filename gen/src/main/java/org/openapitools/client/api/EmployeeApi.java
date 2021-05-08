@@ -58,7 +58,7 @@ public class EmployeeApi {
 
     /**
      * Build call for deleteEmployee
-     * @param name  (required)
+     * @param employeeId  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -69,12 +69,12 @@ public class EmployeeApi {
         <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteEmployeeCall(String name, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deleteEmployeeCall(String employeeId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/employees/{name}"
-            .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/employees/{employeeId}"
+            .replaceAll("\\{" + "employeeId" + "\\}", localVarApiClient.escapeString(employeeId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -101,15 +101,15 @@ public class EmployeeApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteEmployeeValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call deleteEmployeeValidateBeforeCall(String employeeId, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'name' is set
-        if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling deleteEmployee(Async)");
+        // verify the required parameter 'employeeId' is set
+        if (employeeId == null) {
+            throw new ApiException("Missing the required parameter 'employeeId' when calling deleteEmployee(Async)");
         }
         
 
-        okhttp3.Call localVarCall = deleteEmployeeCall(name, _callback);
+        okhttp3.Call localVarCall = deleteEmployeeCall(employeeId, _callback);
         return localVarCall;
 
     }
@@ -117,7 +117,7 @@ public class EmployeeApi {
     /**
      * 
      * Delete a list of action recommendation by targetType and targetId
-     * @param name  (required)
+     * @param employeeId  (required)
      * @return Employee
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -127,15 +127,15 @@ public class EmployeeApi {
         <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
      </table>
      */
-    public Employee deleteEmployee(String name) throws ApiException {
-        ApiResponse<Employee> localVarResp = deleteEmployeeWithHttpInfo(name);
+    public Employee deleteEmployee(String employeeId) throws ApiException {
+        ApiResponse<Employee> localVarResp = deleteEmployeeWithHttpInfo(employeeId);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Delete a list of action recommendation by targetType and targetId
-     * @param name  (required)
+     * @param employeeId  (required)
      * @return ApiResponse&lt;Employee&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -145,8 +145,8 @@ public class EmployeeApi {
         <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Employee> deleteEmployeeWithHttpInfo(String name) throws ApiException {
-        okhttp3.Call localVarCall = deleteEmployeeValidateBeforeCall(name, null);
+    public ApiResponse<Employee> deleteEmployeeWithHttpInfo(String employeeId) throws ApiException {
+        okhttp3.Call localVarCall = deleteEmployeeValidateBeforeCall(employeeId, null);
         Type localVarReturnType = new TypeToken<Employee>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -154,7 +154,7 @@ public class EmployeeApi {
     /**
      *  (asynchronously)
      * Delete a list of action recommendation by targetType and targetId
-     * @param name  (required)
+     * @param employeeId  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -165,16 +165,16 @@ public class EmployeeApi {
         <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteEmployeeAsync(String name, final ApiCallback<Employee> _callback) throws ApiException {
+    public okhttp3.Call deleteEmployeeAsync(String employeeId, final ApiCallback<Employee> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = deleteEmployeeValidateBeforeCall(name, _callback);
+        okhttp3.Call localVarCall = deleteEmployeeValidateBeforeCall(employeeId, _callback);
         Type localVarReturnType = new TypeToken<Employee>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for getEmployee
-     * @param name  (required)
+     * @param employeeId  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -185,12 +185,12 @@ public class EmployeeApi {
         <tr><td> 0 </td><td> Unexpected error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getEmployeeCall(String name, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getEmployeeCall(String employeeId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/employees/{name}"
-            .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/employees/{employeeId}"
+            .replaceAll("\\{" + "employeeId" + "\\}", localVarApiClient.escapeString(employeeId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -217,15 +217,15 @@ public class EmployeeApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getEmployeeValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getEmployeeValidateBeforeCall(String employeeId, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'name' is set
-        if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling getEmployee(Async)");
+        // verify the required parameter 'employeeId' is set
+        if (employeeId == null) {
+            throw new ApiException("Missing the required parameter 'employeeId' when calling getEmployee(Async)");
         }
         
 
-        okhttp3.Call localVarCall = getEmployeeCall(name, _callback);
+        okhttp3.Call localVarCall = getEmployeeCall(employeeId, _callback);
         return localVarCall;
 
     }
@@ -233,7 +233,7 @@ public class EmployeeApi {
     /**
      * 
      * Get a list of action recommendation by targetType and targetId
-     * @param name  (required)
+     * @param employeeId  (required)
      * @return Employee
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -243,15 +243,15 @@ public class EmployeeApi {
         <tr><td> 0 </td><td> Unexpected error </td><td>  -  </td></tr>
      </table>
      */
-    public Employee getEmployee(String name) throws ApiException {
-        ApiResponse<Employee> localVarResp = getEmployeeWithHttpInfo(name);
+    public Employee getEmployee(String employeeId) throws ApiException {
+        ApiResponse<Employee> localVarResp = getEmployeeWithHttpInfo(employeeId);
         return localVarResp.getData();
     }
 
     /**
      * 
      * Get a list of action recommendation by targetType and targetId
-     * @param name  (required)
+     * @param employeeId  (required)
      * @return ApiResponse&lt;Employee&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -261,8 +261,8 @@ public class EmployeeApi {
         <tr><td> 0 </td><td> Unexpected error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Employee> getEmployeeWithHttpInfo(String name) throws ApiException {
-        okhttp3.Call localVarCall = getEmployeeValidateBeforeCall(name, null);
+    public ApiResponse<Employee> getEmployeeWithHttpInfo(String employeeId) throws ApiException {
+        okhttp3.Call localVarCall = getEmployeeValidateBeforeCall(employeeId, null);
         Type localVarReturnType = new TypeToken<Employee>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -270,7 +270,7 @@ public class EmployeeApi {
     /**
      *  (asynchronously)
      * Get a list of action recommendation by targetType and targetId
-     * @param name  (required)
+     * @param employeeId  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -281,148 +281,17 @@ public class EmployeeApi {
         <tr><td> 0 </td><td> Unexpected error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getEmployeeAsync(String name, final ApiCallback<Employee> _callback) throws ApiException {
+    public okhttp3.Call getEmployeeAsync(String employeeId, final ApiCallback<Employee> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getEmployeeValidateBeforeCall(name, _callback);
-        Type localVarReturnType = new TypeToken<Employee>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for getEmployeeAtRandom
-     * @param omitted get an employee from the list of employees with &#39;omitted&#x3D;false&#39; (optional)
-     * @param random get an employee at random (optional)
-     * @param size get one employee (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getEmployeeAtRandomCall(Boolean omitted, Boolean random, Integer size, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/employees/getAtRandom";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (omitted != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("omitted", omitted));
-        }
-
-        if (random != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("random", random));
-        }
-
-        if (size != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("size", size));
-        }
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getEmployeeAtRandomValidateBeforeCall(Boolean omitted, Boolean random, Integer size, final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = getEmployeeAtRandomCall(omitted, random, size, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * 
-     * get an employee with &#39;omitted&#x3D;false&#39; at random
-     * @param omitted get an employee from the list of employees with &#39;omitted&#x3D;false&#39; (optional)
-     * @param random get an employee at random (optional)
-     * @param size get one employee (optional)
-     * @return Employee
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
-     </table>
-     */
-    public Employee getEmployeeAtRandom(Boolean omitted, Boolean random, Integer size) throws ApiException {
-        ApiResponse<Employee> localVarResp = getEmployeeAtRandomWithHttpInfo(omitted, random, size);
-        return localVarResp.getData();
-    }
-
-    /**
-     * 
-     * get an employee with &#39;omitted&#x3D;false&#39; at random
-     * @param omitted get an employee from the list of employees with &#39;omitted&#x3D;false&#39; (optional)
-     * @param random get an employee at random (optional)
-     * @param size get one employee (optional)
-     * @return ApiResponse&lt;Employee&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Employee> getEmployeeAtRandomWithHttpInfo(Boolean omitted, Boolean random, Integer size) throws ApiException {
-        okhttp3.Call localVarCall = getEmployeeAtRandomValidateBeforeCall(omitted, random, size, null);
-        Type localVarReturnType = new TypeToken<Employee>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     *  (asynchronously)
-     * get an employee with &#39;omitted&#x3D;false&#39; at random
-     * @param omitted get an employee from the list of employees with &#39;omitted&#x3D;false&#39; (optional)
-     * @param random get an employee at random (optional)
-     * @param size get one employee (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getEmployeeAtRandomAsync(Boolean omitted, Boolean random, Integer size, final ApiCallback<Employee> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = getEmployeeAtRandomValidateBeforeCall(omitted, random, size, _callback);
+        okhttp3.Call localVarCall = getEmployeeValidateBeforeCall(employeeId, _callback);
         Type localVarReturnType = new TypeToken<Employee>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for getEmployees
-     * @param team  (required)
-     * @param participate whether he/she participates in the online lunch meeting (optional)
-     * @param omitted  (optional)
+     * @param randomGet  (optional)
+     * @param participant  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -433,7 +302,7 @@ public class EmployeeApi {
         <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getEmployeesCall(String team, Boolean participate, Boolean omitted, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getEmployeesCall(Boolean randomGet, Boolean participant, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -445,16 +314,12 @@ public class EmployeeApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (participate != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("participate", participate));
+        if (randomGet != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("random_get", randomGet));
         }
 
-        if (omitted != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("omitted", omitted));
-        }
-
-        if (team != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("team", team));
+        if (participant != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("participant", participant));
         }
 
         final String[] localVarAccepts = {
@@ -476,25 +341,19 @@ public class EmployeeApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getEmployeesValidateBeforeCall(String team, Boolean participate, Boolean omitted, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'team' is set
-        if (team == null) {
-            throw new ApiException("Missing the required parameter 'team' when calling getEmployees(Async)");
-        }
+    private okhttp3.Call getEmployeesValidateBeforeCall(Boolean randomGet, Boolean participant, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = getEmployeesCall(team, participate, omitted, _callback);
+        okhttp3.Call localVarCall = getEmployeesCall(randomGet, participant, _callback);
         return localVarCall;
 
     }
 
     /**
      * 
-     * get all employees
-     * @param team  (required)
-     * @param participate whether he/she participates in the online lunch meeting (optional)
-     * @param omitted  (optional)
+     * get employees under several conditions
+     * @param randomGet  (optional)
+     * @param participant  (optional)
      * @return List&lt;Employee&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -504,17 +363,16 @@ public class EmployeeApi {
         <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
      </table>
      */
-    public List<Employee> getEmployees(String team, Boolean participate, Boolean omitted) throws ApiException {
-        ApiResponse<List<Employee>> localVarResp = getEmployeesWithHttpInfo(team, participate, omitted);
+    public List<Employee> getEmployees(Boolean randomGet, Boolean participant) throws ApiException {
+        ApiResponse<List<Employee>> localVarResp = getEmployeesWithHttpInfo(randomGet, participant);
         return localVarResp.getData();
     }
 
     /**
      * 
-     * get all employees
-     * @param team  (required)
-     * @param participate whether he/she participates in the online lunch meeting (optional)
-     * @param omitted  (optional)
+     * get employees under several conditions
+     * @param randomGet  (optional)
+     * @param participant  (optional)
      * @return ApiResponse&lt;List&lt;Employee&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -524,18 +382,17 @@ public class EmployeeApi {
         <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<Employee>> getEmployeesWithHttpInfo(String team, Boolean participate, Boolean omitted) throws ApiException {
-        okhttp3.Call localVarCall = getEmployeesValidateBeforeCall(team, participate, omitted, null);
+    public ApiResponse<List<Employee>> getEmployeesWithHttpInfo(Boolean randomGet, Boolean participant) throws ApiException {
+        okhttp3.Call localVarCall = getEmployeesValidateBeforeCall(randomGet, participant, null);
         Type localVarReturnType = new TypeToken<List<Employee>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
-     * get all employees
-     * @param team  (required)
-     * @param participate whether he/she participates in the online lunch meeting (optional)
-     * @param omitted  (optional)
+     * get employees under several conditions
+     * @param randomGet  (optional)
+     * @param participant  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -546,124 +403,10 @@ public class EmployeeApi {
         <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getEmployeesAsync(String team, Boolean participate, Boolean omitted, final ApiCallback<List<Employee>> _callback) throws ApiException {
+    public okhttp3.Call getEmployeesAsync(Boolean randomGet, Boolean participant, final ApiCallback<List<Employee>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getEmployeesValidateBeforeCall(team, participate, omitted, _callback);
+        okhttp3.Call localVarCall = getEmployeesValidateBeforeCall(randomGet, participant, _callback);
         Type localVarReturnType = new TypeToken<List<Employee>>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for getParticipants
-     * @param participate whether he/she participates in the online lunch meeting (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getParticipantsCall(Boolean participate, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/employees/getParticipants";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (participate != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("participate", participate));
-        }
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getParticipantsValidateBeforeCall(Boolean participate, final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = getParticipantsCall(participate, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * 
-     * get employees with &#39;participate&#x3D;true&#39;
-     * @param participate whether he/she participates in the online lunch meeting (optional)
-     * @return Employee
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
-     </table>
-     */
-    public Employee getParticipants(Boolean participate) throws ApiException {
-        ApiResponse<Employee> localVarResp = getParticipantsWithHttpInfo(participate);
-        return localVarResp.getData();
-    }
-
-    /**
-     * 
-     * get employees with &#39;participate&#x3D;true&#39;
-     * @param participate whether he/she participates in the online lunch meeting (optional)
-     * @return ApiResponse&lt;Employee&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Employee> getParticipantsWithHttpInfo(Boolean participate) throws ApiException {
-        okhttp3.Call localVarCall = getParticipantsValidateBeforeCall(participate, null);
-        Type localVarReturnType = new TypeToken<Employee>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     *  (asynchronously)
-     * get employees with &#39;participate&#x3D;true&#39;
-     * @param participate whether he/she participates in the online lunch meeting (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getParticipantsAsync(Boolean participate, final ApiCallback<Employee> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = getParticipantsValidateBeforeCall(participate, _callback);
-        Type localVarReturnType = new TypeToken<Employee>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -779,7 +522,7 @@ public class EmployeeApi {
     }
     /**
      * Build call for putEmployeeByName
-     * @param name  (required)
+     * @param employeeId  (required)
      * @param employeePutRequestBody  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -791,12 +534,12 @@ public class EmployeeApi {
         <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call putEmployeeByNameCall(String name, EmployeePutRequestBody employeePutRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call putEmployeeByNameCall(String employeeId, EmployeePutRequestBody employeePutRequestBody, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = employeePutRequestBody;
 
         // create path and map variables
-        String localVarPath = "/employees/{name}"
-            .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/employees/{employeeId}"
+            .replaceAll("\\{" + "employeeId" + "\\}", localVarApiClient.escapeString(employeeId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -823,15 +566,15 @@ public class EmployeeApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putEmployeeByNameValidateBeforeCall(String name, EmployeePutRequestBody employeePutRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call putEmployeeByNameValidateBeforeCall(String employeeId, EmployeePutRequestBody employeePutRequestBody, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'name' is set
-        if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling putEmployeeByName(Async)");
+        // verify the required parameter 'employeeId' is set
+        if (employeeId == null) {
+            throw new ApiException("Missing the required parameter 'employeeId' when calling putEmployeeByName(Async)");
         }
         
 
-        okhttp3.Call localVarCall = putEmployeeByNameCall(name, employeePutRequestBody, _callback);
+        okhttp3.Call localVarCall = putEmployeeByNameCall(employeeId, employeePutRequestBody, _callback);
         return localVarCall;
 
     }
@@ -839,7 +582,7 @@ public class EmployeeApi {
     /**
      * 
      * update omittetd and participate for the employee
-     * @param name  (required)
+     * @param employeeId  (required)
      * @param employeePutRequestBody  (optional)
      * @return Employee
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -850,15 +593,15 @@ public class EmployeeApi {
         <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
      </table>
      */
-    public Employee putEmployeeByName(String name, EmployeePutRequestBody employeePutRequestBody) throws ApiException {
-        ApiResponse<Employee> localVarResp = putEmployeeByNameWithHttpInfo(name, employeePutRequestBody);
+    public Employee putEmployeeByName(String employeeId, EmployeePutRequestBody employeePutRequestBody) throws ApiException {
+        ApiResponse<Employee> localVarResp = putEmployeeByNameWithHttpInfo(employeeId, employeePutRequestBody);
         return localVarResp.getData();
     }
 
     /**
      * 
      * update omittetd and participate for the employee
-     * @param name  (required)
+     * @param employeeId  (required)
      * @param employeePutRequestBody  (optional)
      * @return ApiResponse&lt;Employee&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -869,8 +612,8 @@ public class EmployeeApi {
         <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Employee> putEmployeeByNameWithHttpInfo(String name, EmployeePutRequestBody employeePutRequestBody) throws ApiException {
-        okhttp3.Call localVarCall = putEmployeeByNameValidateBeforeCall(name, employeePutRequestBody, null);
+    public ApiResponse<Employee> putEmployeeByNameWithHttpInfo(String employeeId, EmployeePutRequestBody employeePutRequestBody) throws ApiException {
+        okhttp3.Call localVarCall = putEmployeeByNameValidateBeforeCall(employeeId, employeePutRequestBody, null);
         Type localVarReturnType = new TypeToken<Employee>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -878,7 +621,7 @@ public class EmployeeApi {
     /**
      *  (asynchronously)
      * update omittetd and participate for the employee
-     * @param name  (required)
+     * @param employeeId  (required)
      * @param employeePutRequestBody  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -890,116 +633,10 @@ public class EmployeeApi {
         <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call putEmployeeByNameAsync(String name, EmployeePutRequestBody employeePutRequestBody, final ApiCallback<Employee> _callback) throws ApiException {
+    public okhttp3.Call putEmployeeByNameAsync(String employeeId, EmployeePutRequestBody employeePutRequestBody, final ApiCallback<Employee> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putEmployeeByNameValidateBeforeCall(name, employeePutRequestBody, _callback);
+        okhttp3.Call localVarCall = putEmployeeByNameValidateBeforeCall(employeeId, employeePutRequestBody, _callback);
         Type localVarReturnType = new TypeToken<Employee>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for putEmployeesByTeam
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call putEmployeesByTeamCall(final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/employees";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call putEmployeesByTeamValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = putEmployeesByTeamCall(_callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * 
-     * update the omitted value of the employees in a certain team
-     * @return List&lt;Employee&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
-     </table>
-     */
-    public List<Employee> putEmployeesByTeam() throws ApiException {
-        ApiResponse<List<Employee>> localVarResp = putEmployeesByTeamWithHttpInfo();
-        return localVarResp.getData();
-    }
-
-    /**
-     * 
-     * update the omitted value of the employees in a certain team
-     * @return ApiResponse&lt;List&lt;Employee&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<List<Employee>> putEmployeesByTeamWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = putEmployeesByTeamValidateBeforeCall(null);
-        Type localVarReturnType = new TypeToken<List<Employee>>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     *  (asynchronously)
-     * update the omitted value of the employees in a certain team
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Unexpected Error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call putEmployeesByTeamAsync(final ApiCallback<List<Employee>> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = putEmployeesByTeamValidateBeforeCall(_callback);
-        Type localVarReturnType = new TypeToken<List<Employee>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

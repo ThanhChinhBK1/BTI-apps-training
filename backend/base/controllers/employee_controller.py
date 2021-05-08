@@ -7,26 +7,26 @@ from base.models.employee_put_request_body import EmployeePutRequestBody  # noqa
 from base import util
 
 
-def delete_employee(name):  # noqa: E501
+def delete_employee(employee_id):  # noqa: E501
     """delete_employee
 
     Delete a list of action recommendation by targetType and targetId # noqa: E501
 
-    :param name: 
-    :type name: str
+    :param employee_id: 
+    :type employee_id: str
 
     :rtype: Employee
     """
     return 'do some magic!'
 
 
-def get_employee(name):  # noqa: E501
+def get_employee(employee_id):  # noqa: E501
     """get_employee
 
     Get a list of action recommendation by targetType and targetId # noqa: E501
 
-    :param name: 
-    :type name: str
+    :param employee_id: 
+    :type employee_id: str
 
     :rtype: Employee
     """
@@ -63,13 +63,30 @@ def post_employees(employee_post_request_body=None):  # noqa: E501
     return 'do some magic!'
 
 
-def put_employee_by_name(name, employee_put_request_body=None):  # noqa: E501
+def put_employee_by_name(employee_id, employee_put_request_body=None):  # noqa: E501
     """put_employee_by_name
 
     update omittetd and participate for the employee # noqa: E501
 
-    :param name: 
-    :type name: str
+    :param employee_id: 
+    :type employee_id: str
+    :param employee_put_request_body: 
+    :type employee_put_request_body: dict | bytes
+
+    :rtype: Employee
+    """
+    if connexion.request.is_json:
+        employee_put_request_body = EmployeePutRequestBody.from_dict(connexion.request.get_json())  # noqa: E501
+    return 'do some magic!'
+
+
+def put_employee_by_team(team_id, employee_put_request_body=None):  # noqa: E501
+    """put_employee_by_team
+
+    update omittetd and participate for the employees in the team # noqa: E501
+
+    :param team_id: 
+    :type team_id: str
     :param employee_put_request_body: 
     :type employee_put_request_body: dict | bytes
 

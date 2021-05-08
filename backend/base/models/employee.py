@@ -15,39 +15,49 @@ class Employee(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, name=None, department=None, team=None, omitted=None, participate=None):  # noqa: E501
+    def __init__(self, id=None, name=None, department=None, team=None, mail=None, omitted=None, participate=None):  # noqa: E501
         """Employee - a model defined in OpenAPI
 
+        :param id: The id of this Employee.  # noqa: E501
+        :type id: str
         :param name: The name of this Employee.  # noqa: E501
         :type name: str
         :param department: The department of this Employee.  # noqa: E501
         :type department: str
         :param team: The team of this Employee.  # noqa: E501
         :type team: str
+        :param mail: The mail of this Employee.  # noqa: E501
+        :type mail: str
         :param omitted: The omitted of this Employee.  # noqa: E501
         :type omitted: bool
         :param participate: The participate of this Employee.  # noqa: E501
         :type participate: bool
         """
         self.openapi_types = {
+            'id': str,
             'name': str,
             'department': str,
             'team': str,
+            'mail': str,
             'omitted': bool,
             'participate': bool
         }
 
         self.attribute_map = {
+            'id': 'id',
             'name': 'name',
             'department': 'department',
             'team': 'team',
+            'mail': 'mail',
             'omitted': 'omitted',
             'participate': 'participate'
         }
 
+        self._id = id
         self._name = name
         self._department = department
         self._team = team
+        self._mail = mail
         self._omitted = omitted
         self._participate = participate
 
@@ -61,6 +71,27 @@ class Employee(Model):
         :rtype: Employee
         """
         return util.deserialize_model(dikt, cls)
+
+    @property
+    def id(self):
+        """Gets the id of this Employee.
+
+
+        :return: The id of this Employee.
+        :rtype: str
+        """
+        return self._id
+
+    @id.setter
+    def id(self, id):
+        """Sets the id of this Employee.
+
+
+        :param id: The id of this Employee.
+        :type id: str
+        """
+
+        self._id = id
 
     @property
     def name(self):
@@ -124,6 +155,27 @@ class Employee(Model):
         """
 
         self._team = team
+
+    @property
+    def mail(self):
+        """Gets the mail of this Employee.
+
+
+        :return: The mail of this Employee.
+        :rtype: str
+        """
+        return self._mail
+
+    @mail.setter
+    def mail(self, mail):
+        """Sets the mail of this Employee.
+
+
+        :param mail: The mail of this Employee.
+        :type mail: str
+        """
+
+        self._mail = mail
 
     @property
     def omitted(self):

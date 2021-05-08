@@ -15,9 +15,11 @@
  * Basic response with application status code
  */
 export interface Employee { 
+    id?: string;
     name?: string;
     department?: string;
     team?: string;
+    mail?: string;
     omitted?: boolean;
     participate?: boolean;
 }

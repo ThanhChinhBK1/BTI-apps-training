@@ -28,7 +28,7 @@ import java.io.IOException;
  * Basic response with application status code
  */
 @ApiModel(description = "Basic response with application status code")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-26T16:53:18.375008+09:00[Asia/Tokyo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-06T13:07:18.612441+09:00[Asia/Tokyo]")
 public class BasicResponse {
   public static final String SERIALIZED_NAME_APP_STATUS_CODE = "appStatusCode";
   @SerializedName(SERIALIZED_NAME_APP_STATUS_CODE)

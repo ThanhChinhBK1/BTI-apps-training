@@ -1,32 +1,6 @@
 from cassandra.cluster import Cluster
 import random
-
-def get_employee(name):  # noqa: E501
-    """get_employee
-
-    Get a list of action recommendation by targetType and targetId # noqa: E501
-
-    :param employee_id:
-    :type employee_id: str
-
-    :rtype: Employee
-    """
-    cluster = Cluster()
-    session = cluster.connect('test2')
-    query = "SELECT * FROM employee WHERE name=?"
-    prepared = session.prepare(query)
-    bound_stsm = prepared.bind((name,))
-    rows = session.execute(bound_stsm)
-    res = rows.all()
-    if len(res) == 0:
-        raise NotFound
-    return Employee(
-        name=res[0].name,
-        department=res[0].department,
-        omitted=res[0].omitted,
-        participate=res[0].participate,
-        team=res[0].team
-    )
+import uuid
 
 if __name__ == "__main__":
 
@@ -35,14 +9,55 @@ if __name__ == "__main__":
     # 　データベースに接続
     session = cluster.connect('test2')
 
-    rows = session.execute("SELECT * FROM btiemployee ;")
-    name_list_shuffled = rows.all()
-    random.shuffle(name_list_shuffled)
-    for row in name_list_shuffled:
-        if row.omitted == False:
-            print([get_employee(row.name)])
-            break;
+    # query = "SELECT * FROM btiemployees WHERE id=?;"
+    # prepared = session.prepare(query)
+    # bound_stsm = prepared.bind((uuid.UUID('1f66b07b-1c7d-4706-a03f-51b9bfece190'),))
+    # row = session.execute(bound_stsm)
+    # shain = row.all()
+    # print(shain[0].name)
 
+    rows = session.execute("SELECT * FROM btiemployees ;")
+    list = []
+
+    for row in rows.all():
+        query = "UPDATE btiemployees SET omitted = False WHERE id=? ;"
+        prepared = session.prepare(query)
+        bound_stsm = prepared.bind((row.id,))
+        session.execute(bound_stsm)
+        query = "UPDATE btiemployees SET participate = False WHERE id=? ;"
+        prepared = session.prepare(query)
+        bound_stsm = prepared.bind((row.id,))
+        session.execute(bound_stsm)
+
+
+
+
+
+    # Query with parameter
+    # query = "INSERT INTO btiemployees (id, name, department, mail, omitted, participate, team) VALUES (?,?,?,?,?, ?, ?);"
+    # prepared = session.prepare(query)
+    # bound_stsm = prepared.bind((uuid.uuid4(), '西川 浩平', '製品開発部', None, False, False, 'PS'))
+    # rows = session.execute(bound_stsm)
+    # bound_stsm = prepared.bind((uuid.uuid4(), '前田 昌太朗', '社外', None, False, False, '社外'))
+    # rows = session.execute(bound_stsm)
+    # bound_stsm = prepared.bind((uuid.uuid4(), '本間 由美子', '社外', None, False, False, '社外'))
+    # rows = session.execute(bound_stsm)
+    # bound_stsm = prepared.bind((uuid.uuid4(), '柏木 琴真', '社外', None, False, False, '社外'))
+    # rows = session.execute(bound_stsm)
+    # bound_stsm = prepared.bind((uuid.uuid4(), '矢羽々 豊', '社外', None, False, False, '社外'))
+    # rows = session.execute(bound_stsm)
+    # bound_stsm = prepared.bind((uuid.uuid4(), 'Le Hau', '社外', None, False, False, '社外'))
+    # rows = session.execute(bound_stsm)
+
+
+    # name_list = []
+    #
+    # rows = session.execute("SELECT * FROM btiemployee ;")
+    # name_list_shuffled = rows.all()
+    # random.shuffle(name_list_shuffled)
+    # for row in name_list_shuffled:
+    #         name_list.append(row.name)
+    # print(name_list)
     # query = "UPDATE btiemployee2 SET omitted = True WHERE name=';"
     # prepared = session.prepare(query)
     # bound_stem = prepared.bind(('中澤 貴明',))
@@ -93,22 +108,6 @@ if __name__ == "__main__":
     # bound_stem = prepared.bind(('西川 浩平',))
     # session.execute(bound_stem)
 
-
-    # Query with parameter
-    # query = "INSERT INTO btiemployee ( name, department, omitted ) VALUES (?, ?, ?);"
-    # prepared = session.prepare(query)
-    # bound_stsm = prepared.bind(('鈴木 誠二郎', '特別', False))
-    # rows = session.execute(bound_stsm)
-    # bound_stsm = prepared.bind(('前田 昌太朗', '特別', False))
-    # rows = session.execute(bound_stsm)
-    # bound_stsm = prepared.bind(('本間 由美子', '特別', False))
-    # rows = session.execute(bound_stsm)
-    # bound_stsm = prepared.bind(('柏木 琴真', '製品開発部', False))
-    # rows = session.execute(bound_stsm)
-    # bound_stsm = prepared.bind(('矢羽々 豊', 'プロダクトマネジメント部', False))
-    # rows = session.execute(bound_stsm)
-    # bound_stsm = prepared.bind(('Le Hau', '未来ラボ', False))
-    # rows = session.execute(bound_stsm)
 
     # rows = session.execute("SELECT * FROM btiemployee WHERE omitted = False ALLOW FILTERING")
     # row = rows.all()[0]

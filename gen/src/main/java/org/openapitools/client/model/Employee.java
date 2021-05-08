@@ -28,8 +28,12 @@ import java.io.IOException;
  * Basic response with application status code
  */
 @ApiModel(description = "Basic response with application status code")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-26T16:53:18.375008+09:00[Asia/Tokyo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-06T13:07:18.612441+09:00[Asia/Tokyo]")
 public class Employee {
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
+
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
@@ -42,6 +46,10 @@ public class Employee {
   @SerializedName(SERIALIZED_NAME_TEAM)
   private String team;
 
+  public static final String SERIALIZED_NAME_MAIL = "mail";
+  @SerializedName(SERIALIZED_NAME_MAIL)
+  private String mail;
+
   public static final String SERIALIZED_NAME_OMITTED = "omitted";
   @SerializedName(SERIALIZED_NAME_OMITTED)
   private Boolean omitted;
@@ -49,6 +57,29 @@ public class Employee {
   public static final String SERIALIZED_NAME_PARTICIPATE = "participate";
   @SerializedName(SERIALIZED_NAME_PARTICIPATE)
   private Boolean participate;
+
+
+  public Employee id(String id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Get id
+   * @return id
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getId() {
+    return id;
+  }
+
+
+  public void setId(String id) {
+    this.id = id;
+  }
 
 
   public Employee name(String name) {
@@ -120,6 +151,29 @@ public class Employee {
   }
 
 
+  public Employee mail(String mail) {
+    
+    this.mail = mail;
+    return this;
+  }
+
+   /**
+   * Get mail
+   * @return mail
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getMail() {
+    return mail;
+  }
+
+
+  public void setMail(String mail) {
+    this.mail = mail;
+  }
+
+
   public Employee omitted(Boolean omitted) {
     
     this.omitted = omitted;
@@ -175,16 +229,18 @@ public class Employee {
       return false;
     }
     Employee employee = (Employee) o;
-    return Objects.equals(this.name, employee.name) &&
+    return Objects.equals(this.id, employee.id) &&
+        Objects.equals(this.name, employee.name) &&
         Objects.equals(this.department, employee.department) &&
         Objects.equals(this.team, employee.team) &&
+        Objects.equals(this.mail, employee.mail) &&
         Objects.equals(this.omitted, employee.omitted) &&
         Objects.equals(this.participate, employee.participate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, department, team, omitted, participate);
+    return Objects.hash(id, name, department, team, mail, omitted, participate);
   }
 
 
@@ -192,9 +248,11 @@ public class Employee {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Employee {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    department: ").append(toIndentedString(department)).append("\n");
     sb.append("    team: ").append(toIndentedString(team)).append("\n");
+    sb.append("    mail: ").append(toIndentedString(mail)).append("\n");
     sb.append("    omitted: ").append(toIndentedString(omitted)).append("\n");
     sb.append("    participate: ").append(toIndentedString(participate)).append("\n");
     sb.append("}");

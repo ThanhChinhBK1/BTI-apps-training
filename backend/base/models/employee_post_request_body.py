@@ -15,7 +15,7 @@ class EmployeePostRequestBody(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, name=None, department=None, team=None):  # noqa: E501
+    def __init__(self, name=None, department=None, team=None, mail=None):  # noqa: E501
         """EmployeePostRequestBody - a model defined in OpenAPI
 
         :param name: The name of this EmployeePostRequestBody.  # noqa: E501
@@ -24,22 +24,27 @@ class EmployeePostRequestBody(Model):
         :type department: str
         :param team: The team of this EmployeePostRequestBody.  # noqa: E501
         :type team: str
+        :param mail: The mail of this EmployeePostRequestBody.  # noqa: E501
+        :type mail: str
         """
         self.openapi_types = {
             'name': str,
             'department': str,
-            'team': str
+            'team': str,
+            'mail': str
         }
 
         self.attribute_map = {
             'name': 'name',
             'department': 'department',
-            'team': 'team'
+            'team': 'team',
+            'mail': 'mail'
         }
 
         self._name = name
         self._department = department
         self._team = team
+        self._mail = mail
 
     @classmethod
     def from_dict(cls, dikt) -> 'EmployeePostRequestBody':
@@ -114,3 +119,24 @@ class EmployeePostRequestBody(Model):
         """
 
         self._team = team
+
+    @property
+    def mail(self):
+        """Gets the mail of this EmployeePostRequestBody.
+
+
+        :return: The mail of this EmployeePostRequestBody.
+        :rtype: str
+        """
+        return self._mail
+
+    @mail.setter
+    def mail(self, mail):
+        """Sets the mail of this EmployeePostRequestBody.
+
+
+        :param mail: The mail of this EmployeePostRequestBody.
+        :type mail: str
+        """
+
+        self._mail = mail

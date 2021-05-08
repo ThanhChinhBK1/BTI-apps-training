@@ -1,0 +1,17 @@
+<p>
+  参加が確定している人たち
+</p>
+
+<body>
+  <tr><th>名前</th><th>部署</th><th>チーム</th></tr>
+  <tr *ngFor="let row of shusaisha ; let i = index">
+    <td>{{row.name}}</td>
+    <td>{{row.department}}</td>
+    <td>{{row.team}}</td>
+  </tr>
+</body>
+
+<div>
+  <input type="button" value="参加者リストを作成する" (click)="OnClick()"/>
+</div>
+

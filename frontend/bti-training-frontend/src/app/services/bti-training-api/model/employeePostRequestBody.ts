@@ -18,5 +18,6 @@ export interface EmployeePostRequestBody {
     name?: string;
     department?: string;
     team?: string;
+    mail?: string;
 }
 

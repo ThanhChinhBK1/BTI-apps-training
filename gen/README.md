@@ -2,7 +2,7 @@
 
 apps-training RESTful API
 - API version: 0.0.1
-  - Build date: 2021-04-26T16:53:18.375008+09:00[Asia/Tokyo]
+  - Build date: 2021-05-06T13:07:18.612441+09:00[Asia/Tokyo]
 
 OpenAPI definition file for impulse-apps
 
@@ -85,9 +85,9 @@ public class Example {
     defaultClient.setBasePath("http://localhost/impulse-apps-training");
 
     EmployeeApi apiInstance = new EmployeeApi(defaultClient);
-    String name = "name_example"; // String | 
+    String employeeId = "employeeId_example"; // String | 
     try {
-      Employee result = apiInstance.deleteEmployee(name);
+      Employee result = apiInstance.deleteEmployee(employeeId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling EmployeeApi#deleteEmployee");
@@ -107,14 +107,11 @@ All URIs are relative to *http://localhost/impulse-apps-training*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*EmployeeApi* | [**deleteEmployee**](docs/EmployeeApi.md#deleteEmployee) | **DELETE** /employees/{name} | 
-*EmployeeApi* | [**getEmployee**](docs/EmployeeApi.md#getEmployee) | **GET** /employees/{name} | 
-*EmployeeApi* | [**getEmployeeAtRandom**](docs/EmployeeApi.md#getEmployeeAtRandom) | **GET** /employees/getAtRandom | 
+*EmployeeApi* | [**deleteEmployee**](docs/EmployeeApi.md#deleteEmployee) | **DELETE** /employees/{employeeId} | 
+*EmployeeApi* | [**getEmployee**](docs/EmployeeApi.md#getEmployee) | **GET** /employees/{employeeId} | 
 *EmployeeApi* | [**getEmployees**](docs/EmployeeApi.md#getEmployees) | **GET** /employees | 
-*EmployeeApi* | [**getParticipants**](docs/EmployeeApi.md#getParticipants) | **GET** /employees/getParticipants | 
 *EmployeeApi* | [**postEmployees**](docs/EmployeeApi.md#postEmployees) | **POST** /employees | 
-*EmployeeApi* | [**putEmployeeByName**](docs/EmployeeApi.md#putEmployeeByName) | **PUT** /employees/{name} | 
-*EmployeeApi* | [**putEmployeesByTeam**](docs/EmployeeApi.md#putEmployeesByTeam) | **PUT** /employees | 
+*EmployeeApi* | [**putEmployeeByName**](docs/EmployeeApi.md#putEmployeeByName) | **PUT** /employees/{employeeId} | 
 *RootApi* | [**ping**](docs/RootApi.md#ping) | **GET** / | 
 
 

@@ -18,7 +18,10 @@ export class CreateEmployeeComponent implements OnInit {
   items = this.employeeService.postEmployees();
   checkoutForm = this.formBuilder.group({
     name: '',
-    description: ''
+    department: '',
+    omitted: '',
+    participate: '',
+    team: ''
   });
 
   constructor(private employeeService:EmployeeService,

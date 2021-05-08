@@ -28,7 +28,7 @@ import java.io.IOException;
  * Post request body to create a new employee
  */
 @ApiModel(description = "Post request body to create a new employee")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-26T16:53:18.375008+09:00[Asia/Tokyo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-06T13:07:18.612441+09:00[Asia/Tokyo]")
 public class EmployeePostRequestBody {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -41,6 +41,10 @@ public class EmployeePostRequestBody {
   public static final String SERIALIZED_NAME_TEAM = "team";
   @SerializedName(SERIALIZED_NAME_TEAM)
   private String team;
+
+  public static final String SERIALIZED_NAME_MAIL = "mail";
+  @SerializedName(SERIALIZED_NAME_MAIL)
+  private String mail;
 
 
   public EmployeePostRequestBody name(String name) {
@@ -112,6 +116,29 @@ public class EmployeePostRequestBody {
   }
 
 
+  public EmployeePostRequestBody mail(String mail) {
+    
+    this.mail = mail;
+    return this;
+  }
+
+   /**
+   * Get mail
+   * @return mail
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getMail() {
+    return mail;
+  }
+
+
+  public void setMail(String mail) {
+    this.mail = mail;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -123,12 +150,13 @@ public class EmployeePostRequestBody {
     EmployeePostRequestBody employeePostRequestBody = (EmployeePostRequestBody) o;
     return Objects.equals(this.name, employeePostRequestBody.name) &&
         Objects.equals(this.department, employeePostRequestBody.department) &&
-        Objects.equals(this.team, employeePostRequestBody.team);
+        Objects.equals(this.team, employeePostRequestBody.team) &&
+        Objects.equals(this.mail, employeePostRequestBody.mail);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, department, team);
+    return Objects.hash(name, department, team, mail);
   }
 
 
@@ -139,6 +167,7 @@ public class EmployeePostRequestBody {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    department: ").append(toIndentedString(department)).append("\n");
     sb.append("    team: ").append(toIndentedString(team)).append("\n");
+    sb.append("    mail: ").append(toIndentedString(mail)).append("\n");
     sb.append("}");
     return sb.toString();
   }

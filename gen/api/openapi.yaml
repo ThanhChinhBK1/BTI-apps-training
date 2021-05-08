@@ -34,31 +34,24 @@ paths:
       x-accepts: application/json
   /employees:
     get:
-      description: get all employees
+      description: get employees under several conditions
       operationId: get_employees
       parameters:
-      - description: whether he/she participates in the online lunch meeting
-        explode: true
+      - explode: true
         in: query
-        name: participate
+        name: random_get
         required: false
         schema:
+          description: select an employee at random
           type: boolean
         style: form
       - explode: true
         in: query
-        name: omitted
+        name: participant
         required: false
         schema:
-          description: whether he/she can't participate in the online lunch meeting
+          description: get the participants in the online lunch meeting
           type: boolean
-        style: form
-      - explode: true
-        in: query
-        name: team
-        required: true
-        schema:
-          type: string
         style: form
       responses:
         "200":
@@ -95,30 +88,14 @@ paths:
       x-openapi-router-controller: implemented.controllers.employee_controller
       x-contentType: application/json
       x-accepts: application/json
-    put:
-      description: update the omitted value of the employees in a certain team
-      operationId: put_employees_by_team
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Employees'
-          description: OK
-        default:
-          description: Unexpected Error
-      tags:
-      - employee
-      x-openapi-router-controller: implemented.controllers.employee_controller
-      x-accepts: application/json
-  /employees/{name}:
+  /employees/{employeeId}:
     delete:
       description: Delete a list of action recommendation by targetType and targetId
       operationId: delete_employee
       parameters:
       - explode: false
         in: path
-        name: name
+        name: employeeId
         required: true
         schema:
           type: string
@@ -142,7 +119,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: name
+        name: employeeId
         required: true
         schema:
           type: string
@@ -166,7 +143,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: name
+        name: employeeId
         required: true
         schema:
           type: string
@@ -190,79 +167,12 @@ paths:
       x-openapi-router-controller: implemented.controllers.employee_controller
       x-contentType: application/json
       x-accepts: application/json
-  /employees/getParticipants:
-    get:
-      description: get employees with 'participate=true'
-      operationId: get_participants
-      parameters:
-      - description: whether he/she participates in the online lunch meeting
-        explode: true
-        in: query
-        name: participate
-        required: false
-        schema:
-          type: boolean
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Employee'
-          description: OK
-        default:
-          description: Unexpected Error
-      tags:
-      - employee
-      x-openapi-router-controller: implemented.controllers.employee_controller
-      x-accepts: application/json
-  /employees/getAtRandom:
-    get:
-      description: get an employee with 'omitted=false' at random
-      operationId: get_employee_at_random
-      parameters:
-      - description: get an employee from the list of employees with 'omitted=false'
-        explode: true
-        in: query
-        name: omitted
-        required: false
-        schema:
-          type: boolean
-        style: form
-      - description: get an employee at random
-        explode: true
-        in: query
-        name: random
-        required: false
-        schema:
-          type: boolean
-        style: form
-      - description: get one employee
-        explode: true
-        in: query
-        name: size
-        required: false
-        schema:
-          type: integer
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Employee'
-          description: OK
-        default:
-          description: Unexpected Error
-      tags:
-      - employee
-      x-openapi-router-controller: implemented.controllers.employee_controller
-      x-accepts: application/json
 components:
   schemas:
     EmployeePostRequestBody:
       description: Post request body to create a new employee
       example:
+        mail: mail
         name: name
         team: team
         department: department
@@ -272,6 +182,8 @@ components:
         department:
           type: string
         team:
+          type: string
+        mail:
           type: string
       type: object
     EmployeePutRequestBody:
@@ -289,16 +201,22 @@ components:
       description: Basic response with application status code
       example:
         participate: true
+        mail: mail
         name: name
         omitted: true
+        id: id
         team: team
         department: department
       properties:
+        id:
+          type: string
         name:
           type: string
         department:
           type: string
         team:
+          type: string
+        mail:
           type: string
         omitted:
           type: boolean

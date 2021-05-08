@@ -1,0 +1,35 @@
+<h3 style="text-align:center">
+  参加者リストを作成します。主催者の名前と、参加できないことが分かっている人の名前を入力してそれぞれボタンを押してください。（入力が終わったら下の参加者リストを作成するボタンをクリック）
+</h3>
+<div align="center">
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Name</mat-label>
+      <input type="text"
+             placeholder="名前を入力してください"
+             aria-label="Name"
+             matInput
+             [formControl]="myControl"
+             [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option}}
+          <input type="button" value="参加" (click)="sanka(option)"/>
+          <input type="button" value="不参加" (click)="husanka(option)" />
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div>
+
+<div class="wrapper">
+  <div class="left">
+    <app-join [dataFromParent]="parentData"></app-join>
+  </div>
+  <div class="right">
+    <app-absentee [dataFromParent]="parentData2"></app-absentee>
+  </div>
+</div>
+<app-employee-list></app-employee-list>
+
+<!--<a routerLink="/create-employee"><button class="button" type="submit">新規作成画面</button></a>-->

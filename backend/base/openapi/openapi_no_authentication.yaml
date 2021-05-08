@@ -85,14 +85,14 @@ paths:
       tags:
       - employee
       x-openapi-router-controller: implemented.controllers.employee_controller
-  /employees/{name}:
+  /employees/{employeeId}:
     delete:
       description: Delete a list of action recommendation by targetType and targetId
       operationId: delete_employee
       parameters:
       - explode: false
         in: path
-        name: name
+        name: employeeId
         required: true
         schema:
           type: string
@@ -115,7 +115,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: name
+        name: employeeId
         required: true
         schema:
           type: string
@@ -138,7 +138,36 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: name
+        name: employeeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeePutRequestBody'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+          description: OK
+        default:
+          description: Unexpected Error
+      tags:
+      - employee
+      x-openapi-router-controller: implemented.controllers.employee_controller
+  /teams/{teamId}:
+    put:
+      description: update omittetd and participate for the employees in the team
+      operationId: put_employee_by_team
+      parameters:
+      - explode: false
+        in: path
+        name: teamId
         required: true
         schema:
           type: string
@@ -165,6 +194,7 @@ components:
     EmployeePostRequestBody:
       description: Post request body to create a new employee
       example:
+        mail: mail
         name: name
         team: team
         department: department
@@ -174,6 +204,8 @@ components:
         department:
           type: string
         team:
+          type: string
+        mail:
           type: string
       type: object
     EmployeePutRequestBody:
@@ -191,16 +223,22 @@ components:
       description: Basic response with application status code
       example:
         participate: true
+        mail: mail
         name: name
         omitted: true
+        id: id
         team: team
         department: department
       properties:
+        id:
+          type: string
         name:
           type: string
         department:
           type: string
         team:
+          type: string
+        mail:
           type: string
         omitted:
           type: boolean

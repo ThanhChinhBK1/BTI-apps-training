@@ -1,0 +1,12 @@
+<p>
+  参加できない人たち
+</p>
+
+<body>
+  <tr><th>名前</th><th>部署</th><th>チーム</th></tr>
+  <tr *ngFor="let row of absentees ; let i = index">
+    <td>{{row.name}}</td>
+    <td>{{row.department}}</td>
+    <td>{{row.team}}</td>
+  </tr>
+</body>

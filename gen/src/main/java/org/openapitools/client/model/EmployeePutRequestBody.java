@@ -28,7 +28,7 @@ import java.io.IOException;
  * Put request body to update an employee
  */
 @ApiModel(description = "Put request body to update an employee")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-26T16:53:18.375008+09:00[Asia/Tokyo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-06T13:07:18.612441+09:00[Asia/Tokyo]")
 public class EmployeePutRequestBody {
   public static final String SERIALIZED_NAME_OMITTED = "omitted";
   @SerializedName(SERIALIZED_NAME_OMITTED)
